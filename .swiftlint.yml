@@ -1,0 +1,164 @@
+# SwiftLint Configuration for Demark
+# This configuration is tailored for a Swift 6 package with strict concurrency
+
+# Directories to include in linting
+included:
+  - Sources
+  - Tests
+  - Example/Sources
+
+# Directories to exclude from linting
+excluded:
+  - .build
+  - Example/.build
+  - DerivedData
+  - Packages
+  - .swiftpm
+
+# Rules to disable
+disabled_rules:
+  - todo # Allow TODO comments in development
+  - trailing_comma # Enforced by SwiftFormat
+  - type_body_length # Allow longer types for comprehensive implementations
+  - file_length # Allow longer files for complete implementations
+
+# Rules to enable (opt-in rules)
+opt_in_rules:
+  - array_init
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
+  - discouraged_object_literal
+  - empty_collection_literal
+  - empty_count
+  - empty_string
+  - enum_case_associated_values_count
+  - explicit_init
+  - extension_access_modifier
+  - fallthrough
+  - fatal_error_message
+  - file_header
+  - first_where
+  - flatmap_over_map_reduce
+  - identical_operands
+  - joined_default_parameter
+  - last_where
+  - legacy_random
+  - literal_expression_end_indentation
+  - modifier_order
+  - nimble_operator
+  - nslocalizedstring_key
+  - number_separator
+  - object_literal
+  - operator_usage_whitespace
+  - overridden_super_call
+  - override_in_extension
+  - pattern_matching_keywords
+  - prefer_self_type_over_type_of_self
+  - private_action
+  - private_outlet
+  - prohibited_super_call
+  - quick_discouraged_call
+  - quick_discouraged_focused_test
+  - quick_discouraged_pending_test
+  - reduce_into
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - single_test_class
+  - sorted_first_last
+  - static_operator
+  - strong_iboutlet
+  - toggle_bool
+  - unneeded_parentheses_in_closure_argument
+  - untyped_error_in_catch
+  - vertical_parameter_alignment_on_call
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
+  - xct_specific_matcher
+  - yoda_condition
+
+# Rule configurations
+line_length:
+  warning: 120
+  error: 150
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_urls: true
+
+function_body_length:
+  warning: 50
+  error: 100
+
+function_parameter_count:
+  warning: 6
+  error: 8
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+
+nesting:
+  type_level:
+    warning: 3
+    error: 6
+  function_level:
+    warning: 5
+    error: 10
+
+identifier_name:
+  min_length:
+    warning: 2
+    error: 1
+  max_length:
+    warning: 50
+    error: 100
+  excluded:
+    - id
+    - url
+    - URL
+    - js
+    - i
+    - x
+    - y
+
+large_tuple:
+  warning: 3
+  error: 4
+
+trailing_whitespace:
+  ignores_empty_lines: true
+  ignores_comments: true
+
+# Custom rules for Swift 6 and package development
+custom_rules:
+  # Ensure @MainActor is used for UI-related code
+  main_actor_ui:
+    name: "Main Actor UI"
+    regex: 'class\s+\w*View\w*(?!.*@MainActor)'
+    message: "UI classes should be marked with @MainActor"
+    severity: warning
+
+  # Prefer #expect over XCTAssert in swift-testing
+  swift_testing_expect:
+    name: "Swift Testing Expect"
+    regex: 'XCTAssert'
+    message: "Use #expect instead of XCTAssert in swift-testing"
+    severity: warning
+
+# File header template
+file_header:
+  required_pattern: |
+                    \/\/
+                    \/\/ .*\.swift
+                    \/\/ Demark
+                    \/\/
+                    \/\/ Created by .* on \d{1,2}\/\d{1,2}\/\d{2,4}\.
+                    \/\/
+
+# Reporter type
+reporter: "xcode"

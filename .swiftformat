@@ -1,0 +1,49 @@
+# SwiftFormat Configuration for Demark
+# This configuration is tailored for Swift 6 with strict concurrency
+
+# SwiftFormat version
+--swiftversion 6.0
+
+# File options
+--exclude .build,DerivedData,Packages,.swiftpm,Example/.build
+
+# Formatting rules to disable
+--disable redundantSelf # Keep self. for Swift 6 concurrency clarity
+
+# Indentation and spacing
+--indent 4
+--tabwidth 4
+--trimwhitespace always
+
+# Wrapping options
+--maxwidth 120
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+
+# Control flow formatting
+--elseposition same-line
+
+# Function formatting
+--closingparen balanced
+
+# Import organization
+--importgrouping testable-bottom
+
+# Semicolons
+--semicolons never
+
+# String literals
+--decimalgrouping 3,4
+--binarygrouping 4,8
+--hexliteralcase lowercase
+
+# Operators
+--operatorfunc spaced
+--ranges spaced
+
+# Comments
+--linebreaks lf
+
+# Mark organization
+--markextensions always

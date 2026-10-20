@@ -1,0 +1,511 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		036F0ACB713A5D68A3005642 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466CAF6B6C458EE384C95009 /* ContentView.swift */; };
+		15760F63D3449CC7E070F1BE /* ContentView-macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFF362D0D9008E43CED16B /* ContentView-macOS.swift */; };
+		20DE03085317290369DF95ED /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F00C41F79C3EA8FEE787B /* MarkdownRenderer.swift */; };
+		2E6592FE17FDD2F11E912DC4 /* DemarkExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5337C6E7FF1F4836412748 /* DemarkExampleApp.swift */; };
+		33DA0608412369DCB3008F4F /* DemarkExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5337C6E7FF1F4836412748 /* DemarkExampleApp.swift */; };
+		4166B7B3F69EF1C287AC1D09 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466CAF6B6C458EE384C95009 /* ContentView.swift */; };
+		41D7591AC05E1ECC0DBE54EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A336718581447BAA9FDE61A7 /* Assets.xcassets */; };
+		5BEF88208D22E1E06D52E49E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A336718581447BAA9FDE61A7 /* Assets.xcassets */; };
+		66C9A060B12ED444EC98AD60 /* Demark in Frameworks */ = {isa = PBXBuildFile; productRef = 25CF7BAA4F10C334DCAA9F0A /* Demark */; };
+		68F0F0E93D113598E48075AE /* ContentView-macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFF362D0D9008E43CED16B /* ContentView-macOS.swift */; };
+		8A0ED209CA182A663C0D2A5B /* ContentView-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC2DDDEA858E693FAB47CE /* ContentView-iOS.swift */; };
+		D457AF9E1DA67FB1E87837E6 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F00C41F79C3EA8FEE787B /* MarkdownRenderer.swift */; };
+		F469E4E64279CCFFD8105D33 /* ContentView-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC2DDDEA858E693FAB47CE /* ContentView-iOS.swift */; };
+		F89CA2D6E0030B817E72BDA2 /* Demark in Frameworks */ = {isa = PBXBuildFile; productRef = 3AC4483C4DA6F9F1CFAAC5BF /* Demark */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D60011A9D40CE3264E7858C /* Demark */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Demark; path = ..; sourceTree = SOURCE_ROOT; };
+		43ADD7B087D3F7E7FEC8EAE5 /* DemarkExample-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "DemarkExample-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		466CAF6B6C458EE384C95009 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		49CC2DDDEA858E693FAB47CE /* ContentView-iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-iOS.swift"; sourceTree = "<group>"; };
+		4A4F00C41F79C3EA8FEE787B /* MarkdownRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
+		6DFFF362D0D9008E43CED16B /* ContentView-macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-macOS.swift"; sourceTree = "<group>"; };
+		6F5337C6E7FF1F4836412748 /* DemarkExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemarkExampleApp.swift; sourceTree = "<group>"; };
+		A336718581447BAA9FDE61A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F9227C328D3A00B4E1DED43D /* DemarkExample-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DemarkExample-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		06158A4355811C32D0DBF66B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F89CA2D6E0030B817E72BDA2 /* Demark in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D47C5DB41D9FD8E5F11AEE39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C9A060B12ED444EC98AD60 /* Demark in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1B025527FDFD2CF131291C27 /* DemarkExample */ = {
+			isa = PBXGroup;
+			children = (
+				A336718581447BAA9FDE61A7 /* Assets.xcassets */,
+				49CC2DDDEA858E693FAB47CE /* ContentView-iOS.swift */,
+				6DFFF362D0D9008E43CED16B /* ContentView-macOS.swift */,
+				466CAF6B6C458EE384C95009 /* ContentView.swift */,
+				6F5337C6E7FF1F4836412748 /* DemarkExampleApp.swift */,
+				4A4F00C41F79C3EA8FEE787B /* MarkdownRenderer.swift */,
+			);
+			path = DemarkExample;
+			sourceTree = "<group>";
+		};
+		22B27E92590AD92BEA67B3F3 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				1D60011A9D40CE3264E7858C /* Demark */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		2C99DD51E2F5726B3C4789D3 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1B025527FDFD2CF131291C27 /* DemarkExample */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		AD9A2430554812360AD5B495 = {
+			isa = PBXGroup;
+			children = (
+				22B27E92590AD92BEA67B3F3 /* Packages */,
+				2C99DD51E2F5726B3C4789D3 /* Sources */,
+				D33C9920C320D33BCBA992D4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D33C9920C320D33BCBA992D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				43ADD7B087D3F7E7FEC8EAE5 /* DemarkExample-iOS.app */,
+				F9227C328D3A00B4E1DED43D /* DemarkExample-macOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ABC76EC0A017B24FAFEBD829 /* DemarkExample-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 702CBA0678AB1E77785DD02D /* Build configuration list for PBXNativeTarget "DemarkExample-macOS" */;
+			buildPhases = (
+				2F69100689A58556FC60A90E /* Sources */,
+				7A7ECE8E22B9EA4E88080AFE /* Resources */,
+				06158A4355811C32D0DBF66B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DemarkExample-macOS";
+			packageProductDependencies = (
+				3AC4483C4DA6F9F1CFAAC5BF /* Demark */,
+			);
+			productName = "DemarkExample-macOS";
+			productReference = F9227C328D3A00B4E1DED43D /* DemarkExample-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AFC3CF8748293F10B05F9A82 /* DemarkExample-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2791DF07045F374CD4BA1611 /* Build configuration list for PBXNativeTarget "DemarkExample-iOS" */;
+			buildPhases = (
+				DCEAAC6C4A6C44B80CEBAF0A /* Sources */,
+				61D2D692822A652B7535A20F /* Resources */,
+				D47C5DB41D9FD8E5F11AEE39 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DemarkExample-iOS";
+			packageProductDependencies = (
+				25CF7BAA4F10C334DCAA9F0A /* Demark */,
+			);
+			productName = "DemarkExample-iOS";
+			productReference = 43ADD7B087D3F7E7FEC8EAE5 /* DemarkExample-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		756766EDDE3BDB44E3EE25FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					ABC76EC0A017B24FAFEBD829 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					AFC3CF8748293F10B05F9A82 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F2244621246CF6D713A00E3E /* Build configuration list for PBXProject "DemarkExample" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = AD9A2430554812360AD5B495;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				28F371FBAC0720AC0E4CBFFC /* XCLocalSwiftPackageReference "..//" */,
+			);
+			preferredProjectObjectVersion = 54;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AFC3CF8748293F10B05F9A82 /* DemarkExample-iOS */,
+				ABC76EC0A017B24FAFEBD829 /* DemarkExample-macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		61D2D692822A652B7535A20F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41D7591AC05E1ECC0DBE54EB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A7ECE8E22B9EA4E88080AFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BEF88208D22E1E06D52E49E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F69100689A58556FC60A90E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A0ED209CA182A663C0D2A5B /* ContentView-iOS.swift in Sources */,
+				68F0F0E93D113598E48075AE /* ContentView-macOS.swift in Sources */,
+				036F0ACB713A5D68A3005642 /* ContentView.swift in Sources */,
+				2E6592FE17FDD2F11E912DC4 /* DemarkExampleApp.swift in Sources */,
+				D457AF9E1DA67FB1E87837E6 /* MarkdownRenderer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCEAAC6C4A6C44B80CEBAF0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F469E4E64279CCFFD8105D33 /* ContentView-iOS.swift in Sources */,
+				15760F63D3449CC7E070F1BE /* ContentView-macOS.swift in Sources */,
+				4166B7B3F69EF1C287AC1D09 /* ContentView.swift in Sources */,
+				33DA0608412369DCB3008F4F /* DemarkExampleApp.swift in Sources */,
+				20DE03085317290369DF95ED /* MarkdownRenderer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		03D1A538715B305249CDC580 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_STRICT_SWIFT_CONCURRENCY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.2.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		7B153563D799397D70A49D75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_STRICT_SWIFT_CONCURRENCY = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.2.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		A60418F6FDD56DEB30CCEE2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Platforms/iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.demark.example;
+				PRODUCT_NAME = "Demark Example";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A6FA52364C623783BAD3856F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Platforms/iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.demark.example;
+				PRODUCT_NAME = "Demark Example";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B3CCC458BDF33C27281389E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Platforms/macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.demark.example.mac;
+				PRODUCT_NAME = "Demark Example";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C1A57061615C4F0F6E29F48E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Platforms/macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.demark.example.mac;
+				PRODUCT_NAME = "Demark Example";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2791DF07045F374CD4BA1611 /* Build configuration list for PBXNativeTarget "DemarkExample-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6FA52364C623783BAD3856F /* Debug */,
+				A60418F6FDD56DEB30CCEE2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		702CBA0678AB1E77785DD02D /* Build configuration list for PBXNativeTarget "DemarkExample-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A57061615C4F0F6E29F48E /* Debug */,
+				B3CCC458BDF33C27281389E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F2244621246CF6D713A00E3E /* Build configuration list for PBXProject "DemarkExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B153563D799397D70A49D75 /* Debug */,
+				03D1A538715B305249CDC580 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		28F371FBAC0720AC0E4CBFFC /* XCLocalSwiftPackageReference "..//" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "..//";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		25CF7BAA4F10C334DCAA9F0A /* Demark */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Demark;
+		};
+		3AC4483C4DA6F9F1CFAAC5BF /* Demark */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Demark;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 756766EDDE3BDB44E3EE25FA /* Project object */;
+}
