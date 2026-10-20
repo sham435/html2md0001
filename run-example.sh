@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Demark Example App Runner
-# This script builds and runs the Demark example application
+# HTML2MD Example App Runner
+# This script builds and runs the HTML2MD example application
 
 set -e
 
-echo "🚀 Building and running Demark Example App..."
+echo "🚀 Building and running HTML2MD Example App..."
 echo
 
 # Change to the Example directory
 cd "$(dirname "$0")/Example"
 
 # Build and run the example
-swift run DemarkExample
+swift run HTML2MDExample
 
 echo
-echo "✨ Thanks for trying Demark!"
+echo "✨ Thanks for trying HTML2MD!"

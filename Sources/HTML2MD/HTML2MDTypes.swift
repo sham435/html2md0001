@@ -1,6 +1,6 @@
 //
-// DemarkTypes.swift
-// Demark
+// HTML2MDTypes.swift
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
@@ -10,13 +10,13 @@ import Foundation
 // MARK: - Supporting Types
 
 /// Heading conversion style for Markdown output.
-public enum DemarkHeadingStyle: String, Sendable {
+public enum HTML2MDHeadingStyle: String, Sendable {
     case setext
     case atx
 }
 
 /// Code block formatting style for Markdown output.
-public enum DemarkCodeBlockStyle: String, Sendable {
+public enum HTML2MDCodeBlockStyle: String, Sendable {
     case indented
     case fenced
 }
@@ -52,29 +52,29 @@ public enum ConversionEngine: String, Sendable {
 ///
 /// ```swift
 /// // Use default options with Turndown
-/// let defaultOptions = DemarkOptions()
+/// let defaultOptions = HTML2MDOptions()
 ///
 /// // Use html-to-md for faster conversion
-/// let fastOptions = DemarkOptions(engine: .htmlToMd)
+/// let fastOptions = HTML2MDOptions(engine: .htmlToMd)
 ///
 /// // Custom configuration
-/// let customOptions = DemarkOptions(
+/// let customOptions = HTML2MDOptions(
 ///     engine: .turndown,
 ///     headingStyle: .setext,
 ///     bulletListMarker: "*",
 ///     codeBlockStyle: .indented
 /// )
 ///
-/// let markdown = try await demark.convertToMarkdown(html, options: customOptions)
+/// let markdown = try await html2md.convertToMarkdown(html, options: customOptions)
 /// ```
-public struct DemarkOptions: Sendable {
+public struct HTML2MDOptions: Sendable {
     /// Default configuration with commonly used settings
     ///
     /// Provides a sensible default configuration:
     /// - ATX-style headings (`# Heading`)
     /// - Dash bullets (`- Item`)
     /// - Fenced code blocks (```)
-    public static let `default` = DemarkOptions()
+    public static let `default` = HTML2MDOptions()
 
     /// Controls how HTML headings are converted to Markdown
     ///
@@ -84,7 +84,7 @@ public struct DemarkOptions: Sendable {
     /// **Default:** `.atx`
     ///
     /// **Turndown.js equivalent:** `headingStyle`
-    public var headingStyle: DemarkHeadingStyle = .atx
+    public var headingStyle: HTML2MDHeadingStyle = .atx
 
     /// Character used for unordered list items
     ///
@@ -120,7 +120,7 @@ public struct DemarkOptions: Sendable {
     ///   ```
     ///       console.log('hello');
     ///   ```
-    public var codeBlockStyle: DemarkCodeBlockStyle = .fenced
+    public var codeBlockStyle: HTML2MDCodeBlockStyle = .fenced
 
     /// Conversion engine to use
     ///
@@ -157,9 +157,9 @@ public struct DemarkOptions: Sendable {
     /// Create a new options value with custom configuration.
     public init(
         engine: ConversionEngine = .turndown,
-        headingStyle: DemarkHeadingStyle = .atx,
+        headingStyle: HTML2MDHeadingStyle = .atx,
         bulletListMarker: String = "-",
-        codeBlockStyle: DemarkCodeBlockStyle = .fenced,
+        codeBlockStyle: HTML2MDCodeBlockStyle = .fenced,
         skipTags: [String] = [],
         ignoreTags: [String] = [],
         emptyTags: [String] = []
@@ -178,21 +178,21 @@ public struct DemarkOptions: Sendable {
 
 /// Options for loading URLs in a WebView before conversion
 ///
-/// Controls how Demark loads web pages, including timeout behavior,
+/// Controls how HTML2MD loads web pages, including timeout behavior,
 /// JavaScript idle detection, and content extraction.
 ///
 /// ## Example Usage
 ///
 /// ```swift
 /// // Basic usage with defaults
-/// let markdown = try await demark.convertToMarkdown(url: url)
+/// let markdown = try await html2md.convertToMarkdown(url: url)
 ///
 /// // Extract only article content with custom timeout
 /// let options = URLLoadingOptions(
 ///     timeout: 60,
 ///     contentSelector: "article"
 /// )
-/// let markdown = try await demark.convertToMarkdown(url: url, loadingOptions: options)
+/// let markdown = try await html2md.convertToMarkdown(url: url, loadingOptions: options)
 /// ```
 public struct URLLoadingOptions: Sendable {
     /// Default configuration with sensible settings
@@ -239,7 +239,7 @@ public struct URLLoadingOptions: Sendable {
 // MARK: - Error Types
 
 /// Errors that can occur during HTML to Markdown conversion.
-public enum DemarkError: LocalizedError, Sendable {
+public enum HTML2MDError: LocalizedError, Sendable {
     case jsEnvironmentInitializationFailed
     case libraryNotFound(String)
     case libraryLoadingFailed(String)

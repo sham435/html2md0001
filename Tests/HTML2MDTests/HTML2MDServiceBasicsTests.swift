@@ -1,14 +1,14 @@
 import Testing
-@testable import Demark
+@testable import HTML2MD
 
 @MainActor
-struct DemarkServiceBasicsTests {
+struct HTML2MDServiceBasicsTests {
     @Test("Basic conversion (Turndown)")
     func basicConversionTurndown() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<h1>Heading</h1><p>This is <strong>bold</strong> text.</p>"
 
-        let markdown = try await service.convertToMarkdown(html, options: DemarkOptions(engine: .turndown))
+        let markdown = try await service.convertToMarkdown(html, options: HTML2MDOptions(engine: .turndown))
 
         #expect(markdown.contains("# Heading"))
         #expect(markdown.contains("**bold**"))
@@ -16,7 +16,7 @@ struct DemarkServiceBasicsTests {
 
     @Test("List conversion uses default '-' bullets")
     func listConversionDefaultBullets() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>"
 
         let markdown = try await service.convertToMarkdown(html)
@@ -28,7 +28,7 @@ struct DemarkServiceBasicsTests {
 
     @Test("Code block conversion preserves content")
     func codeBlockConversion() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<pre><code>console.log('hello');</code></pre>"
 
         let markdown = try await service.convertToMarkdown(html)
@@ -39,7 +39,7 @@ struct DemarkServiceBasicsTests {
 
     @Test("Link conversion preserves href and label")
     func linkConversion() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<p>Visit <a href=\"https://example.com\">our website</a> for more info.</p>"
 
         let markdown = try await service.convertToMarkdown(html)
@@ -50,7 +50,7 @@ struct DemarkServiceBasicsTests {
 
     @Test("Link and image attributes are escaped")
     func linkAndImageAttributesAreEscaped() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = """
         <a href="https://example.com/foo bar" title="Hello &quot;World&quot;">Link</a>
         <img src="logo.png?(query)" alt="_img_ *with* [alt]">
@@ -78,7 +78,7 @@ struct DemarkServiceBasicsTests {
                 }
                 Issue.record("Expected initialization timeout")
             } catch {
-                #expect(error is DemarkError)
+                #expect(error is HTML2MDError)
             }
 
             #expect(didRunTimeout)

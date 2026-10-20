@@ -4,25 +4,25 @@
 import PackageDescription
 
 let package = Package(
-    name: "DemarkExample",
+    name: "HTML2MDExample",
     platforms: [
         .macOS(.v14),
         .iOS(.v16),
     ],
     products: [
         .executable(
-            name: "DemarkExample",
-            targets: ["DemarkExample"]
+            name: "HTML2MDExample",
+            targets: ["HTML2MDExample"]
         ),
     ],
     dependencies: [
-        .package(name: "Demark", path: ".."),
+        .package(name: "HTML2MD", path: ".."),
     ],
     targets: [
         .executableTarget(
-            name: "DemarkExample",
+            name: "HTML2MDExample",
             dependencies: [
-                .product(name: "Demark", package: "Demark"),
+                .product(name: "HTML2MD", package: "HTML2MD"),
             ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),

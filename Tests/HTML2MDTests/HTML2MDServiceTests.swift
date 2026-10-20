@@ -1,6 +1,6 @@
 //
-// DemarkServiceTests.swift
-// Demark
+// HTML2MDServiceTests.swift
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
@@ -8,15 +8,15 @@
 import Foundation
 import Testing
 import WebKit
-@testable import Demark
+@testable import HTML2MD
 
 @MainActor
-struct DemarkServiceTests {
+struct HTML2MDServiceTests {
     // MARK: - Initialization Tests
 
     @Test("Service initialization")
     func serviceInitialization() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Service should initialize on first access and work immediately
         let html = "<h1>Test</h1>"
@@ -36,7 +36,7 @@ struct DemarkServiceTests {
 
     @Test("Simple HTML conversion")
     func simpleHTMLConversion() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let html = "<h1>Hello World</h1>"
 
@@ -54,7 +54,7 @@ struct DemarkServiceTests {
 
     @Test("Paragraph conversion")
     func paragraphConversion() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let html = "<p>This is a simple paragraph.</p>"
         let markdown = try await service.convertToMarkdown(html)
@@ -64,7 +64,7 @@ struct DemarkServiceTests {
 
     @Test("Emphasized text conversion")
     func emphasizedText() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let html = "<p>This is <em>emphasized</em> text.</p>"
         let markdown = try await service.convertToMarkdown(html)
@@ -74,7 +74,7 @@ struct DemarkServiceTests {
 
     @Test("Strong text conversion")
     func strongText() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let html = "<p>This is <strong>bold</strong> text.</p>"
         let markdown = try await service.convertToMarkdown(html)
@@ -84,7 +84,7 @@ struct DemarkServiceTests {
 
     @Test("Link conversion")
     func linkConversion() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let html = "<p>Visit <a href=\"https://example.com\">our website</a> for more info.</p>"
         let markdown = try await service.convertToMarkdown(html)
@@ -93,7 +93,7 @@ struct DemarkServiceTests {
     }
 
     func testUnorderedList() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let html = """
         <ul>
@@ -116,7 +116,7 @@ struct DemarkServiceTests {
     }
 
     func testCodeBlock() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let html = "<pre><code>let x = 42;</code></pre>"
         let markdown = try await service.convertToMarkdown(html)
@@ -138,7 +138,7 @@ struct DemarkServiceTests {
     // MARK: - Complex HTML Tests
 
     func testComplexHTML() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = """
         <article>
             <h1>Main Title</h1>
@@ -167,7 +167,7 @@ struct DemarkServiceTests {
     }
 
     func testScriptTagRemoval() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = """
         <div>
             <p>Visible content</p>
@@ -185,7 +185,7 @@ struct DemarkServiceTests {
     }
 
     func testStyleTagRemoval() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = """
         <div>
             <p>Visible content</p>
@@ -205,9 +205,9 @@ struct DemarkServiceTests {
     // MARK: - Custom Options Tests
 
     func testCustomHeadingStyle() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<h1>Test Heading</h1>"
-        let options = DemarkOptions(
+        let options = HTML2MDOptions(
             headingStyle: .setext,
             bulletListMarker: "-",
             codeBlockStyle: .fenced
@@ -222,9 +222,9 @@ struct DemarkServiceTests {
     }
 
     func testCustomBulletMarker() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<ul><li>Item 1</li><li>Item 2</li></ul>"
-        let options = DemarkOptions(
+        let options = HTML2MDOptions(
             headingStyle: .atx,
             bulletListMarker: "*",
             codeBlockStyle: .fenced
@@ -242,7 +242,7 @@ struct DemarkServiceTests {
     // MARK: - Edge Cases and Error Handling
 
     func testEmptyHTML() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let html = ""
         let markdown = try await service.convertToMarkdown(html)
@@ -251,7 +251,7 @@ struct DemarkServiceTests {
     }
 
     func testMalformedHTML() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<p>Unclosed paragraph <strong>bold text"
         let markdown = try await service.convertToMarkdown(html)
 
@@ -261,7 +261,7 @@ struct DemarkServiceTests {
     }
 
     func testSpecialCharacters() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<p>Special chars: &amp; &lt; &gt; &quot; &#39;</p>"
         let markdown = try await service.convertToMarkdown(html)
 
@@ -272,7 +272,7 @@ struct DemarkServiceTests {
     }
 
     func testLargeHTML() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         // Generate a large HTML document
         var html = "<div>"
         for i in 1 ... 100 {
@@ -290,7 +290,7 @@ struct DemarkServiceTests {
     // MARK: - Performance Tests
 
     func testConcurrentConversions() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<h1>Test</h1><p>This is a <strong>test</strong> paragraph.</p>"
 
         // Perform multiple concurrent conversions
@@ -322,7 +322,7 @@ struct DemarkServiceTests {
     // MARK: - Real-world HTML Tests
 
     func testRealisticSidebarContent() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         // Simulate realistic Cursor sidebar content
         let html = """
         <div class="sidebar-content">
@@ -363,7 +363,7 @@ struct DemarkServiceTests {
     // MARK: - Debug and Helper Tests
 
     func testServiceDebugOutput() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let simpleHTML = "<p>Hello World</p>"
         let result = try await service.convertToMarkdown(simpleHTML)
@@ -379,7 +379,7 @@ struct DemarkServiceTests {
     }
 
     func testEnhancedErrorHandling() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test that the service can be created without throwing
         // Service should be created successfully (always true for non-optional)
@@ -395,10 +395,10 @@ struct DemarkServiceTests {
         } catch {
             print("Enhanced error handling test failed with error: \(error)")
             // Print detailed error information for debugging
-            if let demarkError = error as? DemarkError {
-                print("DemarkError type: \(demarkError)")
-                print("Error description: \(demarkError.errorDescription ?? "No description")")
-                print("Recovery suggestion: \(demarkError.recoverySuggestion ?? "No suggestion")")
+            if let html2mdError = error as? HTML2MDError {
+                print("HTML2MDError type: \(html2mdError)")
+                print("Error description: \(html2mdError.errorDescription ?? "No description")")
+                print("Recovery suggestion: \(html2mdError.recoverySuggestion ?? "No suggestion")")
             }
             throw error
         }
@@ -407,7 +407,7 @@ struct DemarkServiceTests {
     // MARK: - Comprehensive Additional Tests
 
     func testEmptyAndWhitespaceHTML() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test empty string
         let emptyMarkdown = try await service.convertToMarkdown("")
@@ -425,7 +425,7 @@ struct DemarkServiceTests {
     }
 
     func testSpecialCharactersAndEncoding() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let htmlWithSpecialChars = """
         <h1>Special Characters Test</h1>
@@ -446,13 +446,13 @@ struct DemarkServiceTests {
     }
 
     func testNestedComplexStructures() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let markdown = try await service.convertToMarkdown(HTMLFixtures.nestedComplex)
         assertNestedComplexMarkdown(markdown)
     }
 
     func testMalformedHTMLAdvanced() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test unclosed tags
         let malformedHTML1 = "<p>This paragraph is not closed<div>Neither is this div<strong>Bold text"
@@ -474,7 +474,7 @@ struct DemarkServiceTests {
     }
 
     func testLargeDocumentPerformance() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Generate a large HTML document
         var largeHTML = "<html><body><h1>Large Document Test</h1>"
@@ -513,7 +513,7 @@ struct DemarkServiceTests {
     }
 
     func testConcurrentConversionsAdvanced() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let htmlSamples = [
             "<h1>Document 1</h1><p>Content for <strong>first</strong> document.</p>",
@@ -537,7 +537,7 @@ struct DemarkServiceTests {
     }
 
     func testErrorHandlingAndEdgeCases() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test extremely long single line
         let longString = String(repeating: "a", count: 50_000)
@@ -578,7 +578,7 @@ struct DemarkServiceTests {
     }
 
     func testCustomConversionOptions() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         let testHTML = """
         <h1>Main Title</h1>
@@ -597,7 +597,7 @@ struct DemarkServiceTests {
         #expect(defaultResult.contains("## Subtitle"))
 
         // Test with custom options (atx headings, different bullet marker)
-        let customOptions = DemarkOptions(
+        let customOptions = HTML2MDOptions(
             headingStyle: .atx,
             bulletListMarker: "*",
             codeBlockStyle: .fenced
@@ -611,7 +611,7 @@ struct DemarkServiceTests {
     }
 
     func testServiceReliability() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Service should remain reliable for multiple operations
         let html1 = "<p>First conversion</p>"
@@ -631,7 +631,7 @@ struct DemarkServiceTests {
     }
 
     func testMarkdownOutputQuality() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let markdown = try await service.convertToMarkdown(HTMLFixtures.documentation)
         assertMarkdownQuality(markdown)
     }
@@ -639,7 +639,7 @@ struct DemarkServiceTests {
     // MARK: - Empty Result Error Tests
 
     func testEmptyResultError_EmptyHTMLElements() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test HTML that produces empty markdown
         let emptyElementsHTML = "<p></p><div></div><span></span>"
@@ -651,7 +651,7 @@ struct DemarkServiceTests {
                 result.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                 "Empty HTML elements should produce empty markdown"
             )
-        } catch DemarkError.emptyResult {
+        } catch HTML2MDError.emptyResult {
             // This is the expected behavior - throwing emptyResult error
             // Empty HTML elements correctly triggered emptyResult error
         } catch {
@@ -662,7 +662,7 @@ struct DemarkServiceTests {
     }
 
     func testEmptyResultError_NonVisibleContent() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test HTML with only script/style tags (invisible content)
         let invisibleContentHTML = """
@@ -679,7 +679,7 @@ struct DemarkServiceTests {
                 result.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                 "HTML with only invisible content should produce empty markdown"
             )
-        } catch DemarkError.emptyResult {
+        } catch HTML2MDError.emptyResult {
             // This is the expected behavior
             // HTML with only invisible content correctly triggered emptyResult error
         } catch {
@@ -690,7 +690,7 @@ struct DemarkServiceTests {
     }
 
     func testEmptyResultError_WhitespaceOnlyContent() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test HTML with only whitespace content
         let whitespaceHTML = "<p>   </p><div>\n\t  \n</div><span>    </span>"
@@ -702,7 +702,7 @@ struct DemarkServiceTests {
                 result.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                 "HTML with only whitespace should produce empty markdown"
             )
-        } catch DemarkError.emptyResult {
+        } catch HTML2MDError.emptyResult {
             // This is acceptable behavior
             // HTML with only whitespace correctly triggered emptyResult error
         } catch {
@@ -713,7 +713,7 @@ struct DemarkServiceTests {
     }
 
     func testEmptyResultError_CommentOnlyContent() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test HTML with only comments
         let commentOnlyHTML = """
@@ -730,7 +730,7 @@ struct DemarkServiceTests {
                 result.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                 "HTML with only comments should produce empty markdown"
             )
-        } catch DemarkError.emptyResult {
+        } catch HTML2MDError.emptyResult {
             // This is the expected behavior
             // HTML with only comments correctly triggered emptyResult error
         } catch {
@@ -741,7 +741,7 @@ struct DemarkServiceTests {
     }
 
     func testEmptyResultError_MalformedEmptyTags() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test malformed HTML that might produce empty results
         let malformedEmptyHTML = "<></><<>>"
@@ -753,7 +753,7 @@ struct DemarkServiceTests {
                 result.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                 "Malformed empty HTML should produce empty markdown"
             )
-        } catch DemarkError.emptyResult {
+        } catch HTML2MDError.emptyResult {
             // This is acceptable behavior
             // Malformed empty HTML correctly triggered emptyResult error
         } catch {
@@ -763,7 +763,7 @@ struct DemarkServiceTests {
     }
 
     func testEmptyResultError_NoThrowForValidEmptyContent() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Empty string should NOT throw emptyResult error
         let emptyString = ""
@@ -780,7 +780,7 @@ struct DemarkServiceTests {
     }
 
     func testEmptyResultError_EdgeCaseBoundaries() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test boundary case: minimal valid content that should NOT trigger emptyResult
         let minimalValidHTML = "<p>a</p>"
@@ -795,7 +795,7 @@ struct DemarkServiceTests {
             print("Non-breaking space HTML result: '\(result)'")
             // Just verify it doesn't crash
             // Non-breaking space HTML was processed
-        } catch DemarkError.emptyResult {
+        } catch HTML2MDError.emptyResult {
             // Non-breaking space HTML triggered emptyResult error (acceptable)
         } catch {
             // During WKWebView transition, other errors might occur
@@ -805,14 +805,14 @@ struct DemarkServiceTests {
     }
 
     func testEmptyResultError_ErrorDetails() async throws {
-        let service = Demark()
+        let service = HTML2MD()
 
         // Test that emptyResult error has proper error descriptions
         let emptyElementsHTML = "<div></div>"
 
         do {
             _ = try await service.convertToMarkdown(emptyElementsHTML)
-        } catch let error as DemarkError {
+        } catch let error as HTML2MDError {
             if case .emptyResult = error {
                 // Verify error has description
                 #expect(error.errorDescription != nil, "emptyResult error should have description")
@@ -927,7 +927,7 @@ private enum HTMLFixtures {
 }
 
 private func runConcurrentConversions(
-    service: Demark,
+    service: HTML2MD,
     htmlSamples: [String]
 ) async -> [(Int, String)] {
     await withTaskGroup(of: (Int, String).self) { group in

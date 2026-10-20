@@ -1,6 +1,6 @@
 //
 // HTMLToMdRuntime.swift
-// Demark
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
@@ -22,16 +22,16 @@ import os.log
     final class HTMLToMdRuntime: @unchecked Sendable {
         // MARK: - Properties
 
-        private let logger = Logger(subsystem: "com.demark", category: "html-to-md")
+        private let logger = Logger(subsystem: "com.sham435.html2md", category: "html-to-md")
         private var jsContext: JSContext?
-        private let queue = DispatchQueue(label: "com.demark.html-to-md", qos: .userInitiated)
+        private let queue = DispatchQueue(label: "com.sham435.html2md.html-to-md", qos: .userInitiated)
         private var isInitialized = false
 
         // MARK: - Public Methods
 
         /// Convert HTML to Markdown using html-to-md
         /// All operations happen on the dedicated queue to ensure thread safety
-        func convert(_ html: String, options: DemarkOptions) async throws -> String {
+        func convert(_ html: String, options: HTML2MDOptions) async throws -> String {
             if await !isInitializedAsync() {
                 try await initialize()
             }
@@ -46,7 +46,7 @@ import os.log
                     guard let self,
                           let context = self.jsContext
                     else {
-                        continuation.resume(throwing: DemarkError.jsContextCreationFailed)
+                        continuation.resume(throwing: HTML2MDError.jsContextCreationFailed)
                         return
                     }
 
@@ -70,7 +70,7 @@ import os.log
             try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
                 queue.async { [weak self] in
                     guard let self else {
-                        continuation.resume(throwing: DemarkError.jsContextCreationFailed)
+                        continuation.resume(throwing: HTML2MDError.jsContextCreationFailed)
                         return
                     }
 
@@ -83,7 +83,7 @@ import os.log
                     do {
                         // Create JavaScript context
                         guard let context = JSContext() else {
-                            throw DemarkError.jsContextCreationFailed
+                            throw HTML2MDError.jsContextCreationFailed
                         }
 
                         // Set up error handling
@@ -98,7 +98,7 @@ import os.log
                             named: "html-to-md.min",
                             classForBundle: HTMLToMdRuntime.self
                         ) else {
-                            throw DemarkError.libraryNotFound("html-to-md.min.js")
+                            throw HTML2MDError.libraryNotFound("html-to-md.min.js")
                         }
 
                         let script = try String(contentsOfFile: path, encoding: .utf8)
@@ -108,7 +108,7 @@ import os.log
                         guard let html2md = context.objectForKeyedSubscript("html2md"),
                               !html2md.isUndefined
                         else {
-                            throw DemarkError.libraryLoadingFailed("html-to-md not available in JSContext")
+                            throw HTML2MDError.libraryLoadingFailed("html-to-md not available in JSContext")
                         }
 
                         self.jsContext = context
@@ -131,7 +131,7 @@ import os.log
             }
         }
 
-        private func buildOptionsDict(_ options: DemarkOptions) -> [String: Any] {
+        private func buildOptionsDict(_ options: HTML2MDOptions) -> [String: Any] {
             var optionsDict: [String: Any] = [:]
             if !options.skipTags.isEmpty {
                 optionsDict["skipTags"] = options.skipTags
@@ -151,7 +151,7 @@ import os.log
         private func optionsJSON(from optionsDict: [String: Any]) throws -> String {
             let optionsData = try JSONSerialization.data(withJSONObject: optionsDict)
             guard let optionsJSON = String(data: optionsData, encoding: .utf8) else {
-                throw DemarkError.invalidInput("Failed to serialize options")
+                throw HTML2MDError.invalidInput("Failed to serialize options")
             }
             return optionsJSON
         }
@@ -180,15 +180,15 @@ import os.log
                   !result.isUndefined,
                   let markdown = result.toString()
             else {
-                throw DemarkError.conversionFailed
+                throw HTML2MDError.conversionFailed
             }
             return markdown
         }
     }
 #else
     final class HTMLToMdRuntime: @unchecked Sendable {
-        func convert(_: String, options _: DemarkOptions) async throws -> String {
-            throw DemarkError
+        func convert(_: String, options _: HTML2MDOptions) async throws -> String {
+            throw HTML2MDError
                 .runtimeUnavailable("html-to-md requires JavaScriptCore, which is not available on this platform")
         }
     }

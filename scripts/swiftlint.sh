@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# SwiftLint runner for Demark
+# SwiftLint runner for HTML2MD
 # This script runs SwiftLint with appropriate configuration
 
 set -e
 
-echo "🔍 Running SwiftLint for Demark..."
+echo "🔍 Running SwiftLint for HTML2MD..."
 
 # Check if SwiftLint is installed
 if ! command -v swiftlint &> /dev/null; then

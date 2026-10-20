@@ -10,29 +10,29 @@
 		036F0ACB713A5D68A3005642 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466CAF6B6C458EE384C95009 /* ContentView.swift */; };
 		15760F63D3449CC7E070F1BE /* ContentView-macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFF362D0D9008E43CED16B /* ContentView-macOS.swift */; };
 		20DE03085317290369DF95ED /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F00C41F79C3EA8FEE787B /* MarkdownRenderer.swift */; };
-		2E6592FE17FDD2F11E912DC4 /* DemarkExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5337C6E7FF1F4836412748 /* DemarkExampleApp.swift */; };
-		33DA0608412369DCB3008F4F /* DemarkExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5337C6E7FF1F4836412748 /* DemarkExampleApp.swift */; };
+		2E6592FE17FDD2F11E912DC4 /* HTML2MDExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5337C6E7FF1F4836412748 /* HTML2MDExampleApp.swift */; };
+		33DA0608412369DCB3008F4F /* HTML2MDExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5337C6E7FF1F4836412748 /* HTML2MDExampleApp.swift */; };
 		4166B7B3F69EF1C287AC1D09 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466CAF6B6C458EE384C95009 /* ContentView.swift */; };
 		41D7591AC05E1ECC0DBE54EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A336718581447BAA9FDE61A7 /* Assets.xcassets */; };
 		5BEF88208D22E1E06D52E49E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A336718581447BAA9FDE61A7 /* Assets.xcassets */; };
-		66C9A060B12ED444EC98AD60 /* Demark in Frameworks */ = {isa = PBXBuildFile; productRef = 25CF7BAA4F10C334DCAA9F0A /* Demark */; };
+		66C9A060B12ED444EC98AD60 /* HTML2MD in Frameworks */ = {isa = PBXBuildFile; productRef = 25CF7BAA4F10C334DCAA9F0A /* HTML2MD */; };
 		68F0F0E93D113598E48075AE /* ContentView-macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFF362D0D9008E43CED16B /* ContentView-macOS.swift */; };
 		8A0ED209CA182A663C0D2A5B /* ContentView-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC2DDDEA858E693FAB47CE /* ContentView-iOS.swift */; };
 		D457AF9E1DA67FB1E87837E6 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F00C41F79C3EA8FEE787B /* MarkdownRenderer.swift */; };
 		F469E4E64279CCFFD8105D33 /* ContentView-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CC2DDDEA858E693FAB47CE /* ContentView-iOS.swift */; };
-		F89CA2D6E0030B817E72BDA2 /* Demark in Frameworks */ = {isa = PBXBuildFile; productRef = 3AC4483C4DA6F9F1CFAAC5BF /* Demark */; };
+		F89CA2D6E0030B817E72BDA2 /* HTML2MD in Frameworks */ = {isa = PBXBuildFile; productRef = 3AC4483C4DA6F9F1CFAAC5BF /* HTML2MD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D60011A9D40CE3264E7858C /* Demark */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Demark; path = ..; sourceTree = SOURCE_ROOT; };
-		43ADD7B087D3F7E7FEC8EAE5 /* DemarkExample-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "DemarkExample-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D60011A9D40CE3264E7858C /* HTML2MD */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HTML2MD; path = ..; sourceTree = SOURCE_ROOT; };
+		43ADD7B087D3F7E7FEC8EAE5 /* HTML2MDExample-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "HTML2MDExample-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		466CAF6B6C458EE384C95009 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		49CC2DDDEA858E693FAB47CE /* ContentView-iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-iOS.swift"; sourceTree = "<group>"; };
 		4A4F00C41F79C3EA8FEE787B /* MarkdownRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
 		6DFFF362D0D9008E43CED16B /* ContentView-macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-macOS.swift"; sourceTree = "<group>"; };
-		6F5337C6E7FF1F4836412748 /* DemarkExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemarkExampleApp.swift; sourceTree = "<group>"; };
+		6F5337C6E7FF1F4836412748 /* HTML2MDExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTML2MDExampleApp.swift; sourceTree = "<group>"; };
 		A336718581447BAA9FDE61A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F9227C328D3A00B4E1DED43D /* DemarkExample-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DemarkExample-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9227C328D3A00B4E1DED43D /* HTML2MDExample-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HTML2MDExample-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F89CA2D6E0030B817E72BDA2 /* Demark in Frameworks */,
+				F89CA2D6E0030B817E72BDA2 /* HTML2MD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,30 +48,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66C9A060B12ED444EC98AD60 /* Demark in Frameworks */,
+				66C9A060B12ED444EC98AD60 /* HTML2MD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1B025527FDFD2CF131291C27 /* DemarkExample */ = {
+		1B025527FDFD2CF131291C27 /* HTML2MDExample */ = {
 			isa = PBXGroup;
 			children = (
 				A336718581447BAA9FDE61A7 /* Assets.xcassets */,
 				49CC2DDDEA858E693FAB47CE /* ContentView-iOS.swift */,
 				6DFFF362D0D9008E43CED16B /* ContentView-macOS.swift */,
 				466CAF6B6C458EE384C95009 /* ContentView.swift */,
-				6F5337C6E7FF1F4836412748 /* DemarkExampleApp.swift */,
+				6F5337C6E7FF1F4836412748 /* HTML2MDExampleApp.swift */,
 				4A4F00C41F79C3EA8FEE787B /* MarkdownRenderer.swift */,
 			);
-			path = DemarkExample;
+			path = HTML2MDExample;
 			sourceTree = "<group>";
 		};
 		22B27E92590AD92BEA67B3F3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				1D60011A9D40CE3264E7858C /* Demark */,
+				1D60011A9D40CE3264E7858C /* HTML2MD */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -79,7 +79,7 @@
 		2C99DD51E2F5726B3C4789D3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1B025527FDFD2CF131291C27 /* DemarkExample */,
+				1B025527FDFD2CF131291C27 /* HTML2MDExample */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -96,8 +96,8 @@
 		D33C9920C320D33BCBA992D4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43ADD7B087D3F7E7FEC8EAE5 /* DemarkExample-iOS.app */,
-				F9227C328D3A00B4E1DED43D /* DemarkExample-macOS.app */,
+				43ADD7B087D3F7E7FEC8EAE5 /* HTML2MDExample-iOS.app */,
+				F9227C328D3A00B4E1DED43D /* HTML2MDExample-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,9 +105,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ABC76EC0A017B24FAFEBD829 /* DemarkExample-macOS */ = {
+		ABC76EC0A017B24FAFEBD829 /* HTML2MDExample-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 702CBA0678AB1E77785DD02D /* Build configuration list for PBXNativeTarget "DemarkExample-macOS" */;
+			buildConfigurationList = 702CBA0678AB1E77785DD02D /* Build configuration list for PBXNativeTarget "HTML2MDExample-macOS" */;
 			buildPhases = (
 				2F69100689A58556FC60A90E /* Sources */,
 				7A7ECE8E22B9EA4E88080AFE /* Resources */,
@@ -117,17 +117,17 @@
 			);
 			dependencies = (
 			);
-			name = "DemarkExample-macOS";
+			name = "HTML2MDExample-macOS";
 			packageProductDependencies = (
-				3AC4483C4DA6F9F1CFAAC5BF /* Demark */,
+				3AC4483C4DA6F9F1CFAAC5BF /* HTML2MD */,
 			);
-			productName = "DemarkExample-macOS";
-			productReference = F9227C328D3A00B4E1DED43D /* DemarkExample-macOS.app */;
+			productName = "HTML2MDExample-macOS";
+			productReference = F9227C328D3A00B4E1DED43D /* HTML2MDExample-macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AFC3CF8748293F10B05F9A82 /* DemarkExample-iOS */ = {
+		AFC3CF8748293F10B05F9A82 /* HTML2MDExample-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2791DF07045F374CD4BA1611 /* Build configuration list for PBXNativeTarget "DemarkExample-iOS" */;
+			buildConfigurationList = 2791DF07045F374CD4BA1611 /* Build configuration list for PBXNativeTarget "HTML2MDExample-iOS" */;
 			buildPhases = (
 				DCEAAC6C4A6C44B80CEBAF0A /* Sources */,
 				61D2D692822A652B7535A20F /* Resources */,
@@ -137,12 +137,12 @@
 			);
 			dependencies = (
 			);
-			name = "DemarkExample-iOS";
+			name = "HTML2MDExample-iOS";
 			packageProductDependencies = (
-				25CF7BAA4F10C334DCAA9F0A /* Demark */,
+				25CF7BAA4F10C334DCAA9F0A /* HTML2MD */,
 			);
-			productName = "DemarkExample-iOS";
-			productReference = 43ADD7B087D3F7E7FEC8EAE5 /* DemarkExample-iOS.app */;
+			productName = "HTML2MDExample-iOS";
+			productReference = 43ADD7B087D3F7E7FEC8EAE5 /* HTML2MDExample-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -164,7 +164,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F2244621246CF6D713A00E3E /* Build configuration list for PBXProject "DemarkExample" */;
+			buildConfigurationList = F2244621246CF6D713A00E3E /* Build configuration list for PBXProject "HTML2MDExample" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -181,8 +181,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AFC3CF8748293F10B05F9A82 /* DemarkExample-iOS */,
-				ABC76EC0A017B24FAFEBD829 /* DemarkExample-macOS */,
+				AFC3CF8748293F10B05F9A82 /* HTML2MDExample-iOS */,
+				ABC76EC0A017B24FAFEBD829 /* HTML2MDExample-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -214,7 +214,7 @@
 				8A0ED209CA182A663C0D2A5B /* ContentView-iOS.swift in Sources */,
 				68F0F0E93D113598E48075AE /* ContentView-macOS.swift in Sources */,
 				036F0ACB713A5D68A3005642 /* ContentView.swift in Sources */,
-				2E6592FE17FDD2F11E912DC4 /* DemarkExampleApp.swift in Sources */,
+				2E6592FE17FDD2F11E912DC4 /* HTML2MDExampleApp.swift in Sources */,
 				D457AF9E1DA67FB1E87837E6 /* MarkdownRenderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +226,7 @@
 				F469E4E64279CCFFD8105D33 /* ContentView-iOS.swift in Sources */,
 				15760F63D3449CC7E070F1BE /* ContentView-macOS.swift in Sources */,
 				4166B7B3F69EF1C287AC1D09 /* ContentView.swift in Sources */,
-				33DA0608412369DCB3008F4F /* DemarkExampleApp.swift in Sources */,
+				33DA0608412369DCB3008F4F /* HTML2MDExampleApp.swift in Sources */,
 				20DE03085317290369DF95ED /* MarkdownRenderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,8 +383,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.demark.example;
-				PRODUCT_NAME = "Demark Example";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sham435.html2md.example;
+				PRODUCT_NAME = "HTML2MD Example";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
@@ -408,8 +408,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.demark.example;
-				PRODUCT_NAME = "Demark Example";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sham435.html2md.example;
+				PRODUCT_NAME = "HTML2MD Example";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
@@ -432,8 +432,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.demark.example.mac;
-				PRODUCT_NAME = "Demark Example";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sham435.html2md.example.mac;
+				PRODUCT_NAME = "HTML2MD Example";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -451,8 +451,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.steipete.demark.example.mac;
-				PRODUCT_NAME = "Demark Example";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sham435.html2md.example.mac;
+				PRODUCT_NAME = "HTML2MD Example";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -460,7 +460,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2791DF07045F374CD4BA1611 /* Build configuration list for PBXNativeTarget "DemarkExample-iOS" */ = {
+		2791DF07045F374CD4BA1611 /* Build configuration list for PBXNativeTarget "HTML2MDExample-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A6FA52364C623783BAD3856F /* Debug */,
@@ -469,7 +469,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		702CBA0678AB1E77785DD02D /* Build configuration list for PBXNativeTarget "DemarkExample-macOS" */ = {
+		702CBA0678AB1E77785DD02D /* Build configuration list for PBXNativeTarget "HTML2MDExample-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1A57061615C4F0F6E29F48E /* Debug */,
@@ -478,7 +478,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F2244621246CF6D713A00E3E /* Build configuration list for PBXProject "DemarkExample" */ = {
+		F2244621246CF6D713A00E3E /* Build configuration list for PBXProject "HTML2MDExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7B153563D799397D70A49D75 /* Debug */,
@@ -497,13 +497,13 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		25CF7BAA4F10C334DCAA9F0A /* Demark */ = {
+		25CF7BAA4F10C334DCAA9F0A /* HTML2MD */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Demark;
+			productName = HTML2MD;
 		};
-		3AC4483C4DA6F9F1CFAAC5BF /* Demark */ = {
+		3AC4483C4DA6F9F1CFAAC5BF /* HTML2MD */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Demark;
+			productName = HTML2MD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

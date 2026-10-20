@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Demark Example Xcode Project Generator
-# This script creates an Xcode project for the Demark example app
+# HTML2MD Example Xcode Project Generator
+# This script creates an Xcode project for the HTML2MD example app
 
 set -e
 
-echo "🔨 Creating Xcode project for Demark Example..."
+echo "🔨 Creating Xcode project for HTML2MD Example..."
 echo
 
 # Change to the Example directory
@@ -35,15 +35,15 @@ xcodegen generate
 # Open in Xcode if requested
 if [ "$1" = "--open" ]; then
     echo "📱 Opening project in Xcode..."
-    open DemarkExample.xcodeproj
+    open HTML2MDExample.xcodeproj
 fi
 
 echo
 echo "✅ Xcode project generated successfully!"
-echo "   Project: $(pwd)/DemarkExample.xcodeproj"
+echo "   Project: $(pwd)/HTML2MDExample.xcodeproj"
 echo
-echo "To open in Xcode:  open DemarkExample.xcodeproj"
-echo "To select scheme:  Use 'DemarkExample-iOS' or 'DemarkExample-macOS'"
+echo "To open in Xcode:  open HTML2MDExample.xcodeproj"
+echo "To select scheme:  Use 'HTML2MDExample-iOS' or 'HTML2MDExample-macOS'"
 echo
 echo "💡 Note: If you see Xcode build warnings about recommended settings,"
 echo "   just run this script again to regenerate with updated settings."

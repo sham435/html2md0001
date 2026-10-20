@@ -1,11 +1,11 @@
 //
 // ContentView-iOS.swift
-// Demark
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
 
-import Demark
+import HTML2MD
 import SwiftUI
 
 #if os(iOS)
@@ -124,8 +124,8 @@ import SwiftUI
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                     Picker("Heading Style", selection: $options.headingStyle) {
-                                        Text("ATX (# Heading)").tag(DemarkHeadingStyle.atx)
-                                        Text("Setext").tag(DemarkHeadingStyle.setext)
+                                        Text("ATX (# Heading)").tag(HTML2MDHeadingStyle.atx)
+                                        Text("Setext").tag(HTML2MDHeadingStyle.setext)
                                     }
                                     .pickerStyle(.segmented)
                                     .disabled(selectedEngine == .htmlToMd)
@@ -149,8 +149,8 @@ import SwiftUI
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                     Picker("Code Blocks", selection: $options.codeBlockStyle) {
-                                        Text("Fenced").tag(DemarkCodeBlockStyle.fenced)
-                                        Text("Indented").tag(DemarkCodeBlockStyle.indented)
+                                        Text("Fenced").tag(HTML2MDCodeBlockStyle.fenced)
+                                        Text("Indented").tag(HTML2MDCodeBlockStyle.indented)
                                     }
                                     .pickerStyle(.segmented)
                                     .disabled(selectedEngine == .htmlToMd)
@@ -224,7 +224,7 @@ import SwiftUI
                     }
                     .padding()
                 }
-                .navigationTitle("Demark")
+                .navigationTitle("HTML2MD")
                 .navigationBarTitleDisplayMode(.large)
             }
         }

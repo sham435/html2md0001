@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Demark",
+    name: "HTML2MD",
     platforms: [
         .macOS(.v14),
         .iOS(.v16),
@@ -14,8 +14,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Demark",
-            targets: ["Demark"]
+            name: "HTML2MD",
+            targets: ["HTML2MD"]
         ),
     ],
     dependencies: [
@@ -23,7 +23,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Demark",
+            name: "HTML2MD",
             dependencies: [],
             resources: [
                 .process("Resources"),
@@ -33,8 +33,8 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "DemarkTests",
-            dependencies: ["Demark"],
+            name: "HTML2MDTests",
+            dependencies: ["HTML2MD"],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency"),
             ]

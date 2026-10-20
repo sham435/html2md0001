@@ -1,6 +1,6 @@
 //
-// DemarkExampleApp.swift
-// Demark
+// HTML2MDExampleApp.swift
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct DemarkExampleApp: App {
+struct HTML2MDExampleApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

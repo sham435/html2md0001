@@ -1,21 +1,21 @@
 //
-// DemarkTests.swift
-// Demark
+// HTML2MDTests.swift
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
 
 import Testing
-@testable import Demark
+@testable import HTML2MD
 
 @MainActor
-struct DemarkTests {
+struct HTML2MDTests {
     @Test("Basic HTML to Markdown conversion")
     func basicHTMLToMarkdownConversion() async throws {
-        let demark = Demark()
+        let html2md = HTML2MD()
         let html = "<h1>Test Heading</h1><p>This is a <strong>test</strong> paragraph.</p>"
 
-        let markdown = try await demark.convertToMarkdown(html)
+        let markdown = try await html2md.convertToMarkdown(html)
 
         #expect(markdown.contains("# Test Heading"))
         #expect(markdown.contains("**test**"))
@@ -24,11 +24,11 @@ struct DemarkTests {
 
     @Test("html-to-md engine conversion")
     func htmlToMdEngine() async throws {
-        let demark = Demark()
+        let html2md = HTML2MD()
         let html = "<h1>Test Heading</h1><p>This is a <strong>test</strong> paragraph with <em>emphasis</em>.</p>"
-        let options = DemarkOptions(engine: .htmlToMd)
+        let options = HTML2MDOptions(engine: .htmlToMd)
 
-        let markdown = try await demark.convertToMarkdown(html, options: options)
+        let markdown = try await html2md.convertToMarkdown(html, options: options)
 
         #expect(markdown.contains("# Test Heading"))
         #expect(markdown.contains("**test**"))
@@ -38,14 +38,14 @@ struct DemarkTests {
 
     @Test("Engine comparison")
     func engineComparison() async throws {
-        let demark = Demark()
+        let html2md = HTML2MD()
         let html = "<h2>Subheading</h2><ul><li>Item 1</li><li>Item 2</li></ul>"
 
-        let turndownOptions = DemarkOptions(engine: .turndown, bulletListMarker: "*")
-        let turndownResult = try await demark.convertToMarkdown(html, options: turndownOptions)
+        let turndownOptions = HTML2MDOptions(engine: .turndown, bulletListMarker: "*")
+        let turndownResult = try await html2md.convertToMarkdown(html, options: turndownOptions)
 
-        let htmlToMdOptions = DemarkOptions(engine: .htmlToMd, bulletListMarker: "*")
-        let htmlToMdResult = try await demark.convertToMarkdown(html, options: htmlToMdOptions)
+        let htmlToMdOptions = HTML2MDOptions(engine: .htmlToMd, bulletListMarker: "*")
+        let htmlToMdResult = try await html2md.convertToMarkdown(html, options: htmlToMdOptions)
 
         print("Turndown result:\n\(turndownResult)")
         print("html-to-md result:\n\(htmlToMdResult)")
@@ -56,9 +56,9 @@ struct DemarkTests {
         #expect(htmlToMdResult.contains("Item 1"))
     }
 
-    @Test("Default Demark options")
-    func demarkOptionsDefaults() {
-        let options = DemarkOptions()
+    @Test("Default HTML2MD options")
+    func html2mdOptionsDefaults() {
+        let options = HTML2MDOptions()
 
         #expect(options.engine == .turndown)
         #expect(options.headingStyle == .atx)
@@ -69,9 +69,9 @@ struct DemarkTests {
         #expect(options.emptyTags.isEmpty)
     }
 
-    @Test("Custom Demark options")
-    func customDemarkOptions() {
-        let options = DemarkOptions(
+    @Test("Custom HTML2MD options")
+    func customHTML2MDOptions() {
+        let options = HTML2MDOptions(
             engine: .htmlToMd,
             headingStyle: .setext,
             bulletListMarker: "*",
@@ -92,13 +92,13 @@ struct DemarkTests {
 
     @Test("Empty HTML input")
     func emptyHTMLInput() async throws {
-        let demark = Demark()
+        let html2md = HTML2MD()
         let html = ""
 
         do {
-            _ = try await demark.convertToMarkdown(html)
+            _ = try await html2md.convertToMarkdown(html)
             #expect(Bool(false), "Expected error for empty input")
-        } catch DemarkError.emptyResult {
+        } catch HTML2MDError.emptyResult {
             #expect(Bool(true))
         } catch {
             #expect(Bool(false), "Unexpected error: \(error)")
@@ -107,10 +107,10 @@ struct DemarkTests {
 
     @Test("List conversion")
     func listConversion() async throws {
-        let demark = Demark()
+        let html2md = HTML2MD()
         let html = "<ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>"
 
-        let markdown = try await demark.convertToMarkdown(html)
+        let markdown = try await html2md.convertToMarkdown(html)
 
         #expect(markdown.contains("- Item 1") || markdown.contains("* Item 1"))
         #expect(markdown.contains("- Item 2") || markdown.contains("* Item 2"))
@@ -119,11 +119,11 @@ struct DemarkTests {
 
     @Test("Custom bullet marker")
     func customBulletMarker() async throws {
-        let demark = Demark()
-        let options = DemarkOptions(bulletListMarker: "*")
+        let html2md = HTML2MD()
+        let options = HTML2MDOptions(bulletListMarker: "*")
         let html = "<ul><li>Item 1</li><li>Item 2</li></ul>"
 
-        let markdown = try await demark.convertToMarkdown(html, options: options)
+        let markdown = try await html2md.convertToMarkdown(html, options: options)
 
         #expect(markdown.contains("* Item 1"))
         #expect(markdown.contains("* Item 2"))
@@ -131,10 +131,10 @@ struct DemarkTests {
 
     @Test("Code block conversion")
     func codeBlockConversion() async throws {
-        let demark = Demark()
+        let html2md = HTML2MD()
         let html = "<pre><code>console.log('hello');</code></pre>"
 
-        let markdown = try await demark.convertToMarkdown(html)
+        let markdown = try await html2md.convertToMarkdown(html)
 
         #expect(markdown.contains("```"))
         #expect(markdown.contains("console.log('hello');"))
@@ -142,10 +142,10 @@ struct DemarkTests {
 
     @Test("Link conversion")
     func linkConversion() async throws {
-        let demark = Demark()
+        let html2md = HTML2MD()
         let html = "<p>Visit <a href=\"https://example.com\">our website</a> for more info.</p>"
 
-        let markdown = try await demark.convertToMarkdown(html)
+        let markdown = try await html2md.convertToMarkdown(html)
 
         #expect(markdown.contains("[our website](https://example.com)"))
         #expect(markdown.contains("Visit"))
@@ -154,7 +154,7 @@ struct DemarkTests {
 
     @Test("Complex HTML structure")
     func complexHTMLStructure() async throws {
-        let demark = Demark()
+        let html2md = HTML2MD()
         let html = """
         <div>
             <h2>Features</h2>
@@ -166,7 +166,7 @@ struct DemarkTests {
         </div>
         """
 
-        let markdown = try await demark.convertToMarkdown(html)
+        let markdown = try await html2md.convertToMarkdown(html)
 
         #expect(markdown.contains("## Features"))
         #expect(markdown.contains("- Easy to use") || markdown.contains("* Easy to use"))

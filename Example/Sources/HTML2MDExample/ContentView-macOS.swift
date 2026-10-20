@@ -1,11 +1,11 @@
 //
 // ContentView-macOS.swift
-// Demark
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
 
-import Demark
+import HTML2MD
 import SwiftUI
 
 #if os(macOS)
@@ -40,7 +40,7 @@ import SwiftUI
                 .frame(minWidth: 400, idealWidth: 500)
             }
             .frame(minWidth: 900, minHeight: 600)
-            .navigationTitle("Demark Example")
+            .navigationTitle("HTML2MD Example")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     convertButton

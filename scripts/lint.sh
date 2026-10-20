@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Combined linting script for Demark
+# Combined linting script for HTML2MD
 # Runs both SwiftLint and SwiftFormat checks
 
 set -e
 
-echo "🧹 Running code quality checks for Demark..."
+echo "🧹 Running code quality checks for HTML2MD..."
 echo
 
 # Change to the project root directory

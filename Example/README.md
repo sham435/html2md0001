@@ -1,6 +1,6 @@
-# Demark Example App
+# HTML2MD Example App
 
-A demonstration app showcasing the Demark HTML to Markdown converter with support for both iOS and macOS.
+A demonstration app showcasing the HTML2MD HTML to Markdown converter with support for both iOS and macOS.
 
 ## Features
 
@@ -21,8 +21,8 @@ A demonstration app showcasing the Demark HTML to Markdown converter with suppor
    ```
 
 2. Select the appropriate scheme:
-   - **DemarkExample**: For macOS
-   - **DemarkExample**: For iOS (select an iOS Simulator)
+   - **HTML2MDExample-macOS**: For macOS
+   - **HTML2MDExample-iOS**: For iOS (select an iOS Simulator)
 
 3. Press ⌘+R to build and run
 
@@ -31,7 +31,7 @@ A demonstration app showcasing the Demark HTML to Markdown converter with suppor
 For macOS:
 ```bash
 cd Example
-swift run DemarkExample
+swift run HTML2MDExample
 ```
 
 Note: iOS apps cannot be run directly from the command line.
@@ -41,8 +41,8 @@ Note: iOS apps cannot be run directly from the command line.
 ```
 Example/
 ├── Sources/
-│   └── DemarkExample/
-│       ├── DemarkExampleApp.swift    # App entry point
+│   └── HTML2MDExample/
+│       ├── HTML2MDExampleApp.swift    # App entry point
 │       ├── ContentView.swift         # Main view with platform switching
 │       ├── ContentView-iOS.swift     # iOS-specific layout
 │       ├── ContentView-macOS.swift   # macOS-specific layout

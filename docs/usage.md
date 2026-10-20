@@ -1,18 +1,18 @@
-# Using Demark
+# Using HTML2MD
 
-Demark has one main-actor-isolated entry point with overloads for HTML strings and URLs. This guide covers the decisions and options beyond the README quick start.
+HTML2MD has one main-actor-isolated entry point with overloads for HTML strings and URLs. This guide covers the decisions and options beyond the README quick start.
 
 ## Execution model
 
-`Demark` is annotated with `@MainActor`, so create and call it from a main-actor context. The default Turndown engine keeps a reusable `WKWebView` on that actor. The `html-to-md` engine performs its JavaScriptCore work on a dedicated serial queue, but callers still enter through the main-actor-isolated public API.
+`HTML2MD` is annotated with `@MainActor`, so create and call it from a main-actor context. The default Turndown engine keeps a reusable `WKWebView` on that actor. The `html-to-md` engine performs its JavaScriptCore work on a dedicated serial queue, but callers still enter through the main-actor-isolated public API.
 
-When `.turndown` fails, Demark retries the same conversion with `.htmlToMd`. Selecting `.htmlToMd` directly does not fall back to Turndown.
+When `.turndown` fails, HTML2MD retries the same conversion with `.htmlToMd`. Selecting `.htmlToMd` directly does not fall back to Turndown.
 
-Both JavaScript libraries are bundled as package resources. Demark has no external Swift Package dependencies and does not download conversion code at runtime.
+Both JavaScript libraries are bundled as package resources. HTML2MD has no external Swift Package dependencies and does not download conversion code at runtime.
 
 ## Conversion options
 
-`DemarkOptions()` selects Turndown, ATX headings, `-` bullets, and fenced code blocks.
+`HTML2MDOptions()` selects Turndown, ATX headings, `-` bullets, and fenced code blocks.
 
 | Option | Default | Behavior |
 |---|---|---|
@@ -25,18 +25,18 @@ Both JavaScript libraries are bundled as package resources. Demark has no extern
 | `emptyTags` | `[]` | Processes matching tags with `html-to-md`'s empty-tag behavior; ignored by Turndown |
 
 ```swift
-import Demark
+import HTML2MD
 
 @MainActor
 func convertDocument(_ html: String) async throws -> String {
-    let options = DemarkOptions(
+    let options = HTML2MDOptions(
         engine: .turndown,
         headingStyle: .setext,
         bulletListMarker: "*",
         codeBlockStyle: .fenced,
         ignoreTags: ["script", "style"]
     )
-    return try await Demark().convertToMarkdown(html, options: options)
+    return try await HTML2MD().convertToMarkdown(html, options: options)
 }
 ```
 
@@ -57,7 +57,7 @@ The URL overload accepts only HTTP and HTTPS URLs. It creates an ephemeral `WKWe
 | `userAgent` | `nil` | Overrides the web view user agent |
 
 ```swift
-import Demark
+import HTML2MD
 import Foundation
 
 @MainActor
@@ -66,7 +66,7 @@ func convertArticle(at url: URL) async throws -> String {
         timeout: 20,
         contentSelector: "main article"
     )
-    return try await Demark().convertToMarkdown(
+    return try await HTML2MD().convertToMarkdown(
         url: url,
         loadingOptions: loading
     )
@@ -77,17 +77,17 @@ A selector with no match throws `.contentSelectorNotFound`. Plain HTTP may requi
 
 ## Errors
 
-All package-defined failures use `DemarkError`, which conforms to `LocalizedError`:
+All package-defined failures use `HTML2MDError`, which conforms to `LocalizedError`:
 
 ```swift
-import Demark
+import HTML2MD
 import Foundation
 
 @MainActor
 func convertOrDescribe(_ html: String) async -> String {
     do {
-        return try await Demark().convertToMarkdown(html)
-    } catch let error as DemarkError {
+        return try await HTML2MD().convertToMarkdown(html)
+    } catch let error as HTML2MDError {
         return error.localizedDescription
     } catch {
         return error.localizedDescription

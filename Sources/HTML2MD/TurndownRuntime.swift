@@ -1,6 +1,6 @@
 //
 // TurndownRuntime.swift
-// Demark
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
@@ -23,7 +23,7 @@ import os.log
     final class TurndownRuntime {
         // MARK: - Properties
 
-        private let logger = Logger(subsystem: "com.demark", category: "turndown")
+        private let logger = Logger(subsystem: "com.sham435.html2md", category: "turndown")
         private var isInitialized = false
         private var initializationDelegate: InitializationNavigationDelegate?
         private var initializationTask: Task<Void, Error>?
@@ -39,7 +39,7 @@ import os.log
         // MARK: - Public Methods
 
         /// Convert HTML to Markdown using Turndown.js
-        func convert(_ html: String, options: DemarkOptions) async throws -> String {
+        func convert(_ html: String, options: HTML2MDOptions) async throws -> String {
             let webView = try await ensureWebViewReady()
 
             let optionsJSON = try buildOptionsJSON(options)
@@ -60,21 +60,21 @@ import os.log
 
                 guard let markdown = result as? String else {
                     logger.error("JavaScript result is not a string: \(type(of: result))")
-                    throw DemarkError.conversionFailed
+                    throw HTML2MDError.conversionFailed
                 }
 
                 logger.info("Turndown conversion completed (output length: \(markdown.count))")
 
                 if markdown.isEmpty, !html.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                     logger.debug("Conversion resulted in empty markdown for non-empty HTML input.")
-                    throw DemarkError.emptyResult
+                    throw HTML2MDError.emptyResult
                 }
 
                 logger.debug("Conversion successful, returning result")
                 return markdown
             } catch {
                 logger.error("JavaScript exception during conversion: \(error)")
-                throw DemarkError.jsException(error.localizedDescription)
+                throw HTML2MDError.jsException(error.localizedDescription)
             }
         }
 
@@ -88,7 +88,7 @@ import os.log
 
             guard let webView else {
                 logger.error("WKWebView not available")
-                throw DemarkError.webViewInitializationFailed
+                throw HTML2MDError.webViewInitializationFailed
             }
 
             guard try await turndownIsAvailable(in: webView) else {
@@ -101,13 +101,13 @@ import os.log
                 try await initializeIfNeeded()
 
                 guard let refreshedWebView = self.webView else {
-                    throw DemarkError.jsEnvironmentInitializationFailed
+                    throw HTML2MDError.jsEnvironmentInitializationFailed
                 }
 
                 // Verify TurndownService is available after reinit
                 guard try await turndownIsAvailable(in: refreshedWebView) else {
                     logger.error("TurndownService still not available after reinitialization")
-                    throw DemarkError.jsEnvironmentInitializationFailed
+                    throw HTML2MDError.jsEnvironmentInitializationFailed
                 }
 
                 return refreshedWebView
@@ -141,7 +141,7 @@ import os.log
             }
         }
 
-        private func buildOptionsJSON(_ options: DemarkOptions) throws -> String {
+        private func buildOptionsJSON(_ options: HTML2MDOptions) throws -> String {
             let optionsDict: [String: Any] = [
                 "headingStyle": options.headingStyle.rawValue,
                 "hr": "---",
@@ -156,7 +156,7 @@ import os.log
 
             let optionsData = try JSONSerialization.data(withJSONObject: optionsDict)
             guard let optionsString = String(data: optionsData, encoding: .utf8) else {
-                throw DemarkError.invalidInput("Failed to serialize options")
+                throw HTML2MDError.invalidInput("Failed to serialize options")
             }
             return optionsString
         }
@@ -249,7 +249,7 @@ import os.log
             #endif
             guard webView != nil else {
                 logger.error("Failed to create WKWebView")
-                throw DemarkError.webViewInitializationFailed
+                throw HTML2MDError.webViewInitializationFailed
             }
             logger.info("Successfully created WKWebView")
 
@@ -261,7 +261,7 @@ import os.log
             logger.info("Loading JavaScript libraries into WKWebView")
 
             guard let webView else {
-                throw DemarkError.webViewInitializationFailed
+                throw HTML2MDError.webViewInitializationFailed
             }
 
             // Find JavaScript library using helper
@@ -270,7 +270,7 @@ import os.log
                 classForBundle: TurndownRuntime.self
             ) else {
                 logger.error("turndown.min.js not found in any bundle")
-                throw DemarkError.libraryNotFound("turndown.min.js")
+                throw HTML2MDError.libraryNotFound("turndown.min.js")
             }
 
             logger.info("Found turndown.min.js at: \(turndownPath)")
@@ -295,16 +295,16 @@ import os.log
                 // Verify TurndownService is actually available
                 guard try await turndownIsAvailable(in: webView) else {
                     logger.error("TurndownService not available after loading script")
-                    throw DemarkError.libraryLoadingFailed("TurndownService not available in global scope")
+                    throw HTML2MDError.libraryLoadingFailed("TurndownService not available in global scope")
                 }
 
                 isInitialized = true
                 logger.info("WKWebView runtime ready with Turndown")
-            } catch let error as DemarkError {
+            } catch let error as HTML2MDError {
                 throw error
             } catch {
                 logger.error("Failed to load JavaScript libraries: \(error)")
-                throw DemarkError.libraryLoadingFailed(error.localizedDescription)
+                throw HTML2MDError.libraryLoadingFailed(error.localizedDescription)
             }
         }
 
@@ -356,7 +356,7 @@ import os.log
                 }
                 guard !Task.isCancelled else { return }
                 onTimeout()
-                self?.complete(with: .failure(DemarkError.jsEnvironmentInitializationFailed))
+                self?.complete(with: .failure(HTML2MDError.jsEnvironmentInitializationFailed))
             }
         }
 
@@ -365,19 +365,19 @@ import os.log
         }
 
         func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
-            complete(with: .failure(DemarkError.jsEnvironmentInitializationFailed))
+            complete(with: .failure(HTML2MDError.jsEnvironmentInitializationFailed))
         }
 
         func webView(_: WKWebView, didFailProvisionalNavigation _: WKNavigation!, withError _: Error) {
-            complete(with: .failure(DemarkError.jsEnvironmentInitializationFailed))
+            complete(with: .failure(HTML2MDError.jsEnvironmentInitializationFailed))
         }
 
         func webViewWebContentProcessDidTerminate(_: WKWebView) {
-            complete(with: .failure(DemarkError.jsEnvironmentInitializationFailed))
+            complete(with: .failure(HTML2MDError.jsEnvironmentInitializationFailed))
         }
 
         func failToStart() {
-            complete(with: .failure(DemarkError.jsEnvironmentInitializationFailed))
+            complete(with: .failure(HTML2MDError.jsEnvironmentInitializationFailed))
         }
 
         func cancel() {
@@ -395,8 +395,8 @@ import os.log
 #else
     @MainActor
     final class TurndownRuntime {
-        func convert(_: String, options _: DemarkOptions) async throws -> String {
-            throw DemarkError.runtimeUnavailable("Turndown requires WebKit, which is not available on this platform")
+        func convert(_: String, options _: HTML2MDOptions) async throws -> String {
+            throw HTML2MDError.runtimeUnavailable("Turndown requires WebKit, which is not available on this platform")
         }
     }
 #endif

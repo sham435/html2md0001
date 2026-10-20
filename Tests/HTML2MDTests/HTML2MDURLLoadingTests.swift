@@ -1,22 +1,23 @@
 import Foundation
 import Testing
-@testable import Demark
+@testable import HTML2MD
 
-private let liveURLTestsEnabled = ProcessInfo.processInfo.environment["DEMARK_LIVE_TESTS"] == "1"
+private let liveURLTestsEnabled = ["HTML2MD_LIVE_TESTS", "DEMARK_LIVE_TESTS"]
+    .contains { ProcessInfo.processInfo.environment[$0] == "1" }
 
 @MainActor
-struct DemarkURLLoadingTests {
+struct HTML2MDURLLoadingTests {
     // MARK: - Unit Tests: Invalid URL Schemes
 
     @Test("Invalid URL scheme - file:// rejected")
     func invalidURLSchemeFile() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "file:///tmp/test.html"))
 
         do {
             _ = try await service.convertToMarkdown(url: url)
-            #expect(Bool(false), "Expected DemarkError.invalidURLScheme for file:// URL")
-        } catch let DemarkError.invalidURLScheme(details) {
+            #expect(Bool(false), "Expected HTML2MDError.invalidURLScheme for file:// URL")
+        } catch let HTML2MDError.invalidURLScheme(details) {
             #expect(details.contains("file"))
             #expect(details.contains("Only http and https"))
         } catch {
@@ -26,13 +27,13 @@ struct DemarkURLLoadingTests {
 
     @Test("Invalid URL scheme - ftp:// rejected")
     func invalidURLSchemeFTP() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "ftp://example.com/file.txt"))
 
         do {
             _ = try await service.convertToMarkdown(url: url)
-            #expect(Bool(false), "Expected DemarkError.invalidURLScheme for ftp:// URL")
-        } catch let DemarkError.invalidURLScheme(details) {
+            #expect(Bool(false), "Expected HTML2MDError.invalidURLScheme for ftp:// URL")
+        } catch let HTML2MDError.invalidURLScheme(details) {
             #expect(details.contains("ftp"))
         } catch {
             #expect(Bool(false), "Unexpected error: \(error)")
@@ -41,13 +42,13 @@ struct DemarkURLLoadingTests {
 
     @Test("Invalid URL scheme - custom scheme rejected")
     func invalidURLSchemeCustom() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "myapp://page/content"))
 
         do {
             _ = try await service.convertToMarkdown(url: url)
-            #expect(Bool(false), "Expected DemarkError.invalidURLScheme for custom scheme")
-        } catch let DemarkError.invalidURLScheme(details) {
+            #expect(Bool(false), "Expected HTML2MDError.invalidURLScheme for custom scheme")
+        } catch let HTML2MDError.invalidURLScheme(details) {
             #expect(details.contains("myapp"))
         } catch {
             #expect(Bool(false), "Unexpected error: \(error)")
@@ -100,7 +101,7 @@ struct DemarkURLLoadingTests {
 
     @Test("Error description - urlLoadingTimeout")
     func errorDescriptionTimeout() {
-        let error = DemarkError.urlLoadingTimeout("https://example.com after 30 seconds")
+        let error = HTML2MDError.urlLoadingTimeout("https://example.com after 30 seconds")
         let description = error.errorDescription ?? ""
 
         #expect(description.contains("timed out"))
@@ -110,7 +111,7 @@ struct DemarkURLLoadingTests {
 
     @Test("Error description - urlNavigationFailed")
     func errorDescriptionNavigation() {
-        let error = DemarkError.urlNavigationFailed("https://example.com: Connection refused")
+        let error = HTML2MDError.urlNavigationFailed("https://example.com: Connection refused")
         let description = error.errorDescription ?? ""
 
         #expect(description.contains("navigation failed"))
@@ -119,7 +120,7 @@ struct DemarkURLLoadingTests {
 
     @Test("Error description - invalidURLScheme")
     func errorDescriptionScheme() {
-        let error = DemarkError.invalidURLScheme("Only http and https URLs are supported, got: file")
+        let error = HTML2MDError.invalidURLScheme("Only http and https URLs are supported, got: file")
         let description = error.errorDescription ?? ""
 
         #expect(description.contains("Invalid URL scheme"))
@@ -128,7 +129,7 @@ struct DemarkURLLoadingTests {
 
     @Test("Error description - contentSelectorNotFound")
     func errorDescriptionSelector() {
-        let error = DemarkError.contentSelectorNotFound("article.main-content")
+        let error = HTML2MDError.contentSelectorNotFound("article.main-content")
         let description = error.errorDescription ?? ""
 
         #expect(description.contains("selector"))
@@ -138,7 +139,7 @@ struct DemarkURLLoadingTests {
 
     @Test("Error description - runtimeUnavailable")
     func errorDescriptionRuntimeUnavailable() {
-        let error = DemarkError.runtimeUnavailable("WebKit is not available")
+        let error = HTML2MDError.runtimeUnavailable("WebKit is not available")
         let description = error.errorDescription ?? ""
 
         #expect(description.contains("Runtime unavailable"))
@@ -148,12 +149,12 @@ struct DemarkURLLoadingTests {
 
 // MARK: - Integration Tests
 
-@Suite(.enabled(if: liveURLTestsEnabled, "Set DEMARK_LIVE_TESTS=1 to run live URL tests."))
+@Suite(.enabled(if: liveURLTestsEnabled, "Set HTML2MD_LIVE_TESTS=1 to run live URL tests."))
 @MainActor
-struct DemarkURLLoadingIntegrationTests {
+struct HTML2MDURLLoadingIntegrationTests {
     @Test("Mixed-case HTTPS scheme accepted")
     func mixedCaseHTTPSSchemeAccepted() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "HTTPS://example.com"))
 
         let markdown = try await service.convertToMarkdown(url: url)
@@ -163,7 +164,7 @@ struct DemarkURLLoadingIntegrationTests {
 
     @Test("Load example.com and convert to markdown")
     func loadExampleDotCom() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "https://example.com"))
 
         let loadingOptions = URLLoadingOptions(
@@ -181,7 +182,7 @@ struct DemarkURLLoadingIntegrationTests {
 
     @Test("Load with content selector extracts specific element")
     func loadWithContentSelector() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "https://example.com"))
 
         // example.com has a <div> container with the main content
@@ -197,7 +198,7 @@ struct DemarkURLLoadingIntegrationTests {
 
     @Test("Content selector not found throws error")
     func contentSelectorNotFound() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "https://example.com"))
 
         let loadingOptions = URLLoadingOptions(
@@ -207,8 +208,8 @@ struct DemarkURLLoadingIntegrationTests {
 
         do {
             _ = try await service.convertToMarkdown(url: url, loadingOptions: loadingOptions)
-            #expect(Bool(false), "Expected DemarkError.contentSelectorNotFound")
-        } catch let DemarkError.contentSelectorNotFound(selector) {
+            #expect(Bool(false), "Expected HTML2MDError.contentSelectorNotFound")
+        } catch let HTML2MDError.contentSelectorNotFound(selector) {
             #expect(selector == "article.nonexistent-class-xyz")
         } catch {
             #expect(Bool(false), "Unexpected error: \(error)")
@@ -217,12 +218,12 @@ struct DemarkURLLoadingIntegrationTests {
 
     @Test("Custom user agent is applied")
     func customUserAgent() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "https://example.com"))
 
         let loadingOptions = URLLoadingOptions(
             timeout: 30,
-            userAgent: "DemarkTest/1.0"
+            userAgent: "HTML2MDTest/1.0"
         )
 
         // Just verify the request succeeds with custom user agent
@@ -232,7 +233,7 @@ struct DemarkURLLoadingIntegrationTests {
 
     @Test("Short timeout with slow request")
     func shortTimeoutError() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         // Use a URL that will definitely timeout with 0.1s timeout
         let url = try #require(URL(string: "https://example.com"))
 
@@ -245,7 +246,7 @@ struct DemarkURLLoadingIntegrationTests {
         do {
             _ = try await service.convertToMarkdown(url: url, loadingOptions: loadingOptions)
             // If it succeeds (very fast network), that's fine too
-        } catch let DemarkError.urlLoadingTimeout(details) {
+        } catch let HTML2MDError.urlLoadingTimeout(details) {
             #expect(details.contains("example.com"))
         } catch {
             // Other network errors are acceptable
@@ -255,12 +256,12 @@ struct DemarkURLLoadingIntegrationTests {
 
 // MARK: - Edge Case Tests
 
-@Suite(.enabled(if: liveURLTestsEnabled, "Set DEMARK_LIVE_TESTS=1 to run live URL tests."))
+@Suite(.enabled(if: liveURLTestsEnabled, "Set HTML2MD_LIVE_TESTS=1 to run live URL tests."))
 @MainActor
-struct DemarkURLLoadingEdgeCaseTests {
+struct HTML2MDURLLoadingEdgeCaseTests {
     @Test("URL with query parameters")
     func urlWithQueryParams() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         // example.com ignores query params but we're testing URL handling
         let url = try #require(URL(string: "https://example.com/?foo=bar&baz=123"))
 
@@ -270,7 +271,7 @@ struct DemarkURLLoadingEdgeCaseTests {
 
     @Test("URL with fragment")
     func urlWithFragment() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "https://example.com/#section"))
 
         let markdown = try await service.convertToMarkdown(url: url)
@@ -279,7 +280,7 @@ struct DemarkURLLoadingEdgeCaseTests {
 
     @Test("URL with encoded characters")
     func urlWithEncodedChars() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         // %20 is space, example.com will handle this gracefully
         let url = try #require(URL(string: "https://example.com/path%20with%20spaces"))
 
@@ -287,14 +288,14 @@ struct DemarkURLLoadingEdgeCaseTests {
             let markdown = try await service.convertToMarkdown(url: url)
             // May get error page but shouldn't crash
             #expect(!markdown.isEmpty)
-        } catch DemarkError.urlNavigationFailed {
+        } catch HTML2MDError.urlNavigationFailed {
             // 404 or similar is acceptable
         }
     }
 
     @Test("Selector with attribute")
     func selectorWithAttribute() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "https://example.com"))
 
         // Test that attribute selectors work
@@ -309,7 +310,7 @@ struct DemarkURLLoadingEdgeCaseTests {
 
     @Test("Selector with quotes in attribute")
     func selectorWithQuotes() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "https://example.com"))
 
         // Test selector with quoted attribute value - use the actual IANA link
@@ -324,7 +325,7 @@ struct DemarkURLLoadingEdgeCaseTests {
 
     @Test("Minimal timeout and idle settings")
     func minimalDelays() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "https://example.com"))
 
         let loadingOptions = URLLoadingOptions(
@@ -339,14 +340,14 @@ struct DemarkURLLoadingEdgeCaseTests {
 
     @Test("HTTP URL scheme accepted")
     func httpSchemeAccepted() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         // Note: May fail due to ATS, but should not throw invalidURLScheme
         let url = try #require(URL(string: "http://example.com"))
 
         do {
             let markdown = try await service.convertToMarkdown(url: url)
             #expect(!markdown.isEmpty)
-        } catch DemarkError.invalidURLScheme {
+        } catch HTML2MDError.invalidURLScheme {
             #expect(Bool(false), "http:// should be accepted, not rejected as invalid scheme")
         } catch {
             // Network errors (ATS, connection issues) are acceptable
@@ -356,12 +357,12 @@ struct DemarkURLLoadingEdgeCaseTests {
 
 // MARK: - Cancellation Tests
 
-@Suite(.enabled(if: liveURLTestsEnabled, "Set DEMARK_LIVE_TESTS=1 to run live URL tests."))
+@Suite(.enabled(if: liveURLTestsEnabled, "Set HTML2MD_LIVE_TESTS=1 to run live URL tests."))
 @MainActor
-struct DemarkURLLoadingCancellationTests {
+struct HTML2MDURLLoadingCancellationTests {
     @Test("Task cancellation stops loading")
     func taskCancellation() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let url = try #require(URL(string: "https://example.com"))
 
         let loadingOptions = URLLoadingOptions(
@@ -387,19 +388,19 @@ struct DemarkURLLoadingCancellationTests {
             // CancellationError or wrapped version is expected
             let isCancellation = error is CancellationError ||
                 String(describing: error).contains("cancel")
-            #expect(isCancellation || error is DemarkError, "Expected cancellation or Demark error, got: \(error)")
+            #expect(isCancellation || error is HTML2MDError, "Expected cancellation or HTML2MD error, got: \(error)")
         }
     }
 }
 
 // MARK: - Concurrent Load Tests
 
-@Suite(.enabled(if: liveURLTestsEnabled, "Set DEMARK_LIVE_TESTS=1 to run live URL tests."))
+@Suite(.enabled(if: liveURLTestsEnabled, "Set HTML2MD_LIVE_TESTS=1 to run live URL tests."))
 @MainActor
-struct DemarkURLLoadingConcurrencyTests {
+struct HTML2MDURLLoadingConcurrencyTests {
     @Test("Concurrent URL loads don't cross-cancel")
     func concurrentURLLoads() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let urls = try [
             #require(URL(string: "https://example.com")),
             #require(URL(string: "https://example.org")),

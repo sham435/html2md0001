@@ -1,13 +1,13 @@
 import Testing
-@testable import Demark
+@testable import HTML2MD
 
 @MainActor
-struct DemarkServiceConcurrencyTests {
+struct HTML2MDServiceConcurrencyTests {
     @Test("Concurrent conversions are consistent")
     func concurrentConversions() async throws {
-        let service = Demark()
+        let service = HTML2MD()
         let html = "<h1>Test</h1><p>This is a <strong>test</strong> paragraph.</p>"
-        let options = DemarkOptions(engine: .htmlToMd, bulletListMarker: "-")
+        let options = HTML2MDOptions(engine: .htmlToMd, bulletListMarker: "-")
 
         let tasks = (1 ... 6).map { _ in
             Task { try await service.convertToMarkdown(html, options: options) }

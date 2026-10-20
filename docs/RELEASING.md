@@ -1,6 +1,6 @@
-# Releasing Demark
+# Releasing HTML2MD
 
-Demark ships as a SwiftPM library. The release workflow uses
+HTML2MD ships as a SwiftPM library. The release workflow uses
 `openclaw/release-workflows/.github/workflows/release-source.yml@v1` to publish
 GitHub Releases with the exact dated changelog section, frozen-commit source ZIP
 and tar archives, an asset inventory, and SHA-256 checksums. There is no npm,
@@ -18,7 +18,7 @@ Merge the preparation PR and wait for every push CI check on that exact protecte
 `main` commit to pass. Rehearse from `main`:
 
 ```sh
-gh workflow run release.yml --repo steipete/Demark --ref main -f version=X.Y.Z -F dry_run=true
+gh workflow run release.yml --repo sham435/html2md0001 --ref main -f version=X.Y.Z -F dry_run=true
 ```
 
 Dispatch defaults to `dry_run: true`. It builds and tests the package, validates

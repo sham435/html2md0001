@@ -1,6 +1,6 @@
 //
 // URLLoadingRuntime.swift
-// Demark
+// HTML2MD
 //
 // Copyright © 2026 atacan. All rights reserved.
 //
@@ -23,7 +23,7 @@ import os.log
     final class URLLoadingRuntime {
         // MARK: - Properties
 
-        private let logger = Logger(subsystem: "com.demark", category: "url-loading")
+        private let logger = Logger(subsystem: "com.sham435.html2md", category: "url-loading")
         private var activeDelegates: [ObjectIdentifier: URLNavigationDelegate] = [:]
 
         // MARK: - Lifecycle
@@ -47,7 +47,7 @@ import os.log
         ///   - url: The URL to load
         ///   - options: Loading configuration options
         /// - Returns: The rendered HTML content
-        /// - Throws: DemarkError if loading fails
+        /// - Throws: HTML2MDError if loading fails
         func loadAndExtract(url: URL, options: URLLoadingOptions) async throws -> String {
             // Create fresh ephemeral WebView for each load
             let webView = createWebView(userAgent: options.userAgent)
@@ -178,13 +178,13 @@ import os.log
 
         func webView(_: WKWebView, didFail _: WKNavigation!, withError error: Error) {
             logger.error("Navigation failed: \(error.localizedDescription)")
-            complete(with: .failure(DemarkError
+            complete(with: .failure(HTML2MDError
                     .urlNavigationFailed("\(url.absoluteString): \(error.localizedDescription)")))
         }
 
         func webView(_: WKWebView, didFailProvisionalNavigation _: WKNavigation!, withError error: Error) {
             logger.error("Provisional navigation failed: \(error.localizedDescription)")
-            complete(with: .failure(DemarkError
+            complete(with: .failure(HTML2MDError
                     .urlNavigationFailed("\(url.absoluteString): \(error.localizedDescription)")))
         }
 
@@ -196,7 +196,7 @@ import os.log
             } else {
                 "∞"
             }
-            complete(with: .failure(DemarkError
+            complete(with: .failure(HTML2MDError
                     .urlLoadingTimeout("\(url.absoluteString) after \(secondsDescription) seconds")))
         }
 
@@ -240,11 +240,11 @@ import os.log
             let result = try await webView.evaluateJavaScript(script)
 
             if options.contentSelector != nil, result == nil || (result as? NSNull) != nil {
-                throw DemarkError.contentSelectorNotFound(options.contentSelector!)
+                throw HTML2MDError.contentSelectorNotFound(options.contentSelector!)
             }
 
             guard let html = result as? String else {
-                throw DemarkError.conversionFailed
+                throw HTML2MDError.conversionFailed
             }
 
             logger.info("Extracted HTML length: \(html.count) characters")
@@ -256,7 +256,7 @@ import os.log
             // Wrap in array since JSONSerialization requires a collection as top-level object
             let data = try JSONSerialization.data(withJSONObject: [string])
             guard let arrayString = String(data: data, encoding: .utf8) else {
-                throw DemarkError.invalidInput("Failed to escape selector: \(string)")
+                throw HTML2MDError.invalidInput("Failed to escape selector: \(string)")
             }
             // Extract the quoted string from the array: ["value"] -> "value"
             let startIndex = arrayString.index(after: arrayString.startIndex) // Skip [
@@ -290,7 +290,9 @@ import os.log
     @MainActor
     final class URLLoadingRuntime {
         func loadAndExtract(url _: URL, options _: URLLoadingOptions) async throws -> String {
-            throw DemarkError.runtimeUnavailable("URL loading requires WebKit, which is not available on this platform")
+            throw HTML2MDError.runtimeUnavailable(
+                "URL loading requires WebKit, which is not available on this platform"
+            )
         }
     }
 #endif

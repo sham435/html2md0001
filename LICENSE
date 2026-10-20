@@ -1,6 +1,12 @@
 MIT License
 
 Copyright (c) 2026 Peter Steinberger
+Copyright (c) 2026 sham435 (HTML2MD fork)
+
+HTML2MD is a fork of Demark (https://github.com/steipete/Demark),
+Copyright (c) 2026 Peter Steinberger, used under the MIT License. Fork
+modifications rename the package to HTML2MD and adjust tooling; the
+conversion engines, options, and error model are unchanged.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

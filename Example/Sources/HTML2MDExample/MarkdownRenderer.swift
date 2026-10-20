@@ -1,6 +1,6 @@
 //
 // MarkdownRenderer.swift
-// Demark
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //

@@ -1,6 +1,6 @@
 //
-// Demark.swift
-// Demark
+// HTML2MD.swift
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
@@ -13,7 +13,7 @@ import os.log
 final class ConversionRuntime {
     // MARK: - Properties
 
-    private let logger = Logger(subsystem: "com.demark", category: "conversion")
+    private let logger = Logger(subsystem: "com.sham435.html2md", category: "conversion")
     private let turndownRuntime = TurndownRuntime()
     private let htmlToMdRuntime = HTMLToMdRuntime()
     private lazy var urlLoadingRuntime = URLLoadingRuntime()
@@ -21,7 +21,7 @@ final class ConversionRuntime {
     // MARK: - Public Methods
 
     /// Convert HTML to Markdown with optional configuration
-    func htmlToMarkdown(_ html: String, options: DemarkOptions = .default) async throws -> String {
+    func htmlToMarkdown(_ html: String, options: HTML2MDOptions = .default) async throws -> String {
         logger.info(
             "Starting HTML to Markdown conversion with \(options.engine.rawValue) engine"
         )
@@ -29,7 +29,7 @@ final class ConversionRuntime {
 
         // Reject empty input early to keep error semantics consistent across engines.
         if html.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            throw DemarkError.emptyResult
+            throw HTML2MDError.emptyResult
         }
 
         // Route to appropriate engine
@@ -40,7 +40,7 @@ final class ConversionRuntime {
                 rawMarkdown = try await turndownRuntime.convert(html, options: options)
             } catch {
                 logger.warning("Turndown failed (\(error)); falling back to html-to-md")
-                let fallback = DemarkOptions(
+                let fallback = HTML2MDOptions(
                     engine: .htmlToMd,
                     headingStyle: options.headingStyle,
                     bulletListMarker: options.bulletListMarker,
@@ -59,13 +59,13 @@ final class ConversionRuntime {
     }
 
     /// Load URL and convert to Markdown
-    func urlToMarkdown(_ url: URL, options: DemarkOptions, loadingOptions: URLLoadingOptions) async throws -> String {
+    func urlToMarkdown(_ url: URL, options: HTML2MDOptions, loadingOptions: URLLoadingOptions) async throws -> String {
         logger.info("Loading URL for conversion: \(url.absoluteString)")
 
         // Validate URL scheme
         let scheme = url.scheme?.lowercased()
         guard scheme == "http" || scheme == "https" else {
-            throw DemarkError.invalidURLScheme("Only http and https URLs are supported, got: \(url.scheme ?? "nil")")
+            throw HTML2MDError.invalidURLScheme("Only http and https URLs are supported, got: \(url.scheme ?? "nil")")
         }
 
         // Load and extract HTML
@@ -143,7 +143,7 @@ final class ConversionRuntime {
 
 /// Service for converting HTML content to Markdown format.
 ///
-/// Demark provides:
+/// HTML2MD provides:
 /// - Multiple conversion engines (Turndown.js and html-to-md)
 /// - Main-thread HTML to Markdown conversion using WKWebView (Turndown)
 /// - Background thread conversion using JavaScriptCore (html-to-md)
@@ -161,21 +161,21 @@ final class ConversionRuntime {
 ///
 /// ## Platform Support
 ///
-/// Demark works fully on Apple platforms with WebKit and JavaScriptCore:
+/// HTML2MD works fully on Apple platforms with WebKit and JavaScriptCore:
 /// - **macOS 14.0+**: Full functionality with desktop optimizations
 /// - **iOS 16.0+**: Full functionality with mobile optimizations
 /// - **visionOS 1.0+**: Full functionality with spatial computing optimizations
-/// On platforms where Apple does not provide WebKit/JavaScriptCore, Demark
-/// compiles but throws `DemarkError.runtimeUnavailable`.
+/// On platforms where Apple does not provide WebKit/JavaScriptCore, HTML2MD
+/// compiles but throws `HTML2MDError.runtimeUnavailable`.
 @MainActor
-public final class Demark {
+public final class HTML2MD {
     // MARK: - Properties
 
     private let conversionRuntime: ConversionRuntime
 
     // MARK: - Lifecycle
 
-    /// Create a new Demark converter instance.
+    /// Create a new HTML2MD converter instance.
     public init() {
         conversionRuntime = ConversionRuntime()
     }
@@ -190,21 +190,21 @@ public final class Demark {
     ///   - html: The HTML content to convert to Markdown
     ///   - options: Configuration options for the conversion process
     /// - Returns: The converted Markdown string
-    /// - Throws: DemarkError if conversion fails
+    /// - Throws: HTML2MDError if conversion fails
     ///
     /// ## Example
     ///
     /// ```swift
-    /// let demark = Demark()
+    /// let html2md = HTML2MD()
     /// let html = "<h1>Hello</h1><p>This is <strong>bold</strong> text.</p>"
     ///
     /// // Using default Turndown engine
-    /// let markdown = try await demark.convertToMarkdown(html)
+    /// let markdown = try await html2md.convertToMarkdown(html)
     /// // Result: "# Hello\n\nThis is **bold** text."
     ///
     /// // Using html-to-md for faster conversion
-    /// let fastOptions = DemarkOptions(engine: .htmlToMd)
-    /// let markdown = try await demark.convertToMarkdown(html, options: fastOptions)
+    /// let fastOptions = HTML2MDOptions(engine: .htmlToMd)
+    /// let markdown = try await html2md.convertToMarkdown(html, options: fastOptions)
     /// ```
     ///
     /// ## Threading
@@ -222,10 +222,10 @@ public final class Demark {
     ///
     /// ## See Also
     ///
-    /// - `DemarkOptions`: Configuration options for conversion
+    /// - `HTML2MDOptions`: Configuration options for conversion
     /// - `ConversionEngine`: Available conversion engines
-    /// - `DemarkError`: Error types that can be thrown during conversion
-    public func convertToMarkdown(_ html: String, options: DemarkOptions = DemarkOptions()) async throws -> String {
+    /// - `HTML2MDError`: Error types that can be thrown during conversion
+    public func convertToMarkdown(_ html: String, options: HTML2MDOptions = HTML2MDOptions()) async throws -> String {
         try await conversionRuntime.htmlToMarkdown(html, options: options)
     }
 
@@ -239,23 +239,23 @@ public final class Demark {
     ///   - options: Configuration options for the HTML to Markdown conversion process
     ///   - loadingOptions: Configuration options for URL loading behavior
     /// - Returns: The converted Markdown string
-    /// - Throws: DemarkError if loading or conversion fails
+    /// - Throws: HTML2MDError if loading or conversion fails
     ///
     /// ## Example
     ///
     /// ```swift
-    /// let demark = Demark()
+    /// let html2md = HTML2MD()
     /// let url = URL(string: "https://example.com")!
     ///
     /// // Basic usage with defaults
-    /// let markdown = try await demark.convertToMarkdown(url: url)
+    /// let markdown = try await html2md.convertToMarkdown(url: url)
     ///
     /// // Extract only article content with custom timeout
     /// let loadingOptions = URLLoadingOptions(
     ///     timeout: 60,
     ///     contentSelector: "article"
     /// )
-    /// let markdown = try await demark.convertToMarkdown(
+    /// let markdown = try await html2md.convertToMarkdown(
     ///     url: url,
     ///     loadingOptions: loadingOptions
     /// )
@@ -274,11 +274,11 @@ public final class Demark {
     /// ## See Also
     ///
     /// - `URLLoadingOptions`: Configuration options for URL loading
-    /// - `DemarkOptions`: Configuration options for HTML to Markdown conversion
-    /// - `DemarkError`: Error types that can be thrown during loading or conversion
+    /// - `HTML2MDOptions`: Configuration options for HTML to Markdown conversion
+    /// - `HTML2MDError`: Error types that can be thrown during loading or conversion
     public func convertToMarkdown(
         url: URL,
-        options: DemarkOptions = DemarkOptions(),
+        options: HTML2MDOptions = HTML2MDOptions(),
         loadingOptions: URLLoadingOptions = URLLoadingOptions()
     ) async throws -> String {
         try await conversionRuntime.urlToMarkdown(url, options: options, loadingOptions: loadingOptions)

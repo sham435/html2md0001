@@ -1,11 +1,11 @@
 //
 // ContentView.swift
-// Demark
+// HTML2MD
 //
 // Created by Peter Steinberger on 12/28/2025.
 //
 
-import Demark
+import HTML2MD
 import SwiftUI
 #if os(iOS)
     import UIKit
@@ -21,11 +21,11 @@ struct ContentView: View {
     @State var isConverting: Bool = false
     @State var conversionError: String?
     @State var selectedTab: OutputTab = .source
-    @State var options = DemarkOptions()
+    @State var options = HTML2MDOptions()
     @State var selectedEngine: ConversionEngine = .turndown
     @State var urlLoadingOptions = URLLoadingOptions()
 
-    private let demark = Demark()
+    private let html2md = HTML2MD()
 
     enum InputMode: String, CaseIterable {
         case html = "HTML"
@@ -210,8 +210,8 @@ struct ContentView: View {
                         .foregroundColor(.secondary)
 
                     Picker("", selection: $options.headingStyle) {
-                        Text("ATX (# Heading)").tag(DemarkHeadingStyle.atx)
-                        Text("Setext (Underline)").tag(DemarkHeadingStyle.setext)
+                        Text("ATX (# Heading)").tag(HTML2MDHeadingStyle.atx)
+                        Text("Setext (Underline)").tag(HTML2MDHeadingStyle.setext)
                     }
                     .pickerStyle(.segmented)
                     .frame(maxWidth: 300)
@@ -243,8 +243,8 @@ struct ContentView: View {
                         .foregroundColor(.secondary)
 
                     Picker("", selection: $options.codeBlockStyle) {
-                        Text("Fenced (```)").tag(DemarkCodeBlockStyle.fenced)
-                        Text("Indented").tag(DemarkCodeBlockStyle.indented)
+                        Text("Fenced (```)").tag(HTML2MDCodeBlockStyle.fenced)
+                        Text("Indented").tag(HTML2MDCodeBlockStyle.indented)
                     }
                     .pickerStyle(.segmented)
                     .frame(maxWidth: 300)
@@ -444,7 +444,7 @@ struct ContentView: View {
 
         Task {
             do {
-                let result = try await demark.convertToMarkdown(htmlInput, options: options)
+                let result = try await html2md.convertToMarkdown(htmlInput, options: options)
                 markdownOutput = result
                 conversionError = nil
             } catch {
@@ -468,7 +468,7 @@ struct ContentView: View {
 
         Task {
             do {
-                let result = try await demark.convertToMarkdown(
+                let result = try await html2md.convertToMarkdown(
                     url: url,
                     options: options,
                     loadingOptions: urlLoadingOptions

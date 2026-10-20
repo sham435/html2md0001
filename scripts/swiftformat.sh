@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# SwiftFormat runner for Demark
+# SwiftFormat runner for HTML2MD
 # This script runs SwiftFormat with appropriate configuration
 
 set -e
 
-echo "🎨 Running SwiftFormat for Demark..."
+echo "🎨 Running SwiftFormat for HTML2MD..."
 
 # Check if SwiftFormat is installed
 if ! command -v swiftformat &> /dev/null; then

@@ -1,4 +1,4 @@
-# SwiftLint Configuration for Demark
+# SwiftLint Configuration for HTML2MD
 # This configuration is tailored for a Swift 6 package with strict concurrency
 
 # Directories to include in linting
@@ -155,7 +155,7 @@ file_header:
   required_pattern: |
                     \/\/
                     \/\/ .*\.swift
-                    \/\/ Demark
+                    \/\/ HTML2MD
                     \/\/
                     \/\/ Created by .* on \d{1,2}\/\d{1,2}\/\d{2,4}\.
                     \/\/
