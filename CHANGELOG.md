@@ -2,16 +2,17 @@
 
 Releases before the rename were published upstream as
 [Demark](https://github.com/steipete/Demark); this fork's first release is
-HTML2MD 1.0.0.
+HTML2MD 2.0.0.
 
 ## Unreleased
 
-## [1.0.0] - 2026-10-20
+## [2.0.0] - 2026-10-20
 
 **Highlights:** First release of the HTML2MD fork, renamed from Demark with the same conversion engines, options, and error model.
 
 ### Changed
 - Renamed the package to HTML2MD: SwiftPM package and product, module, and public types (`HTML2MD`, `HTML2MDOptions`, `HTML2MDError`, `HTML2MDHeadingStyle`, `HTML2MDCodeBlockStyle`).
+- Released as 2.0.0 because the rename breaks the module and public type names; the upstream Demark release history below keeps the original 1.0.0 section.
 - Renamed the example app to HTML2MDExample and moved its bundle identifiers to `com.sham435.html2md`.
 - Renamed the opt-in live URL test flag to `HTML2MD_LIVE_TESTS`; `DEMARK_LIVE_TESTS` keeps working.
 - Replaced the banner artwork with HTML2MD branding and added a release signing key policy for the fork.

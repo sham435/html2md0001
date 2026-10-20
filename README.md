@@ -27,7 +27,7 @@ For a `Package.swift` manifest, add the package and product dependency:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sham435/html2md0001.git", from: "1.0.0"),
+    .package(url: "https://github.com/sham435/html2md0001.git", from: "2.0.0"),
 ]
 
 .target(
@@ -135,7 +135,7 @@ git fetch upstream
 git merge upstream/main
 ```
 
-Upstream releases before the rename are published as `Demark`; this fork's first release is `HTML2MD` 1.0.0.
+Upstream releases before the rename are published as `Demark`; this fork's first release is `HTML2MD` 2.0.0, a major version because the module and public types were renamed.
 
 ## Credits
 
