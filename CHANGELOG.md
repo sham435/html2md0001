@@ -14,6 +14,7 @@ HTML2MD 1.0.0.
 - Renamed the package to HTML2MD: SwiftPM package and product, module, and public types (`HTML2MD`, `HTML2MDOptions`, `HTML2MDError`, `HTML2MDHeadingStyle`, `HTML2MDCodeBlockStyle`).
 - Renamed the example app to HTML2MDExample and moved its bundle identifiers to `com.sham435.html2md`.
 - Renamed the opt-in live URL test flag to `HTML2MD_LIVE_TESTS`; `DEMARK_LIVE_TESTS` keeps working.
+- Replaced the banner artwork with HTML2MD branding and added a release signing key policy for the fork.
 - Move CI and release verification to Xcode 27 runners while retaining macOS 14 and the existing Apple platform minimums.
 
 ## [1.2.1] - 2026-09-13
